@@ -1,0 +1,7 @@
+{
+  "name": "FeeroshCOC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
