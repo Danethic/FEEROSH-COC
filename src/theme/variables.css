@@ -1,2 +1,65 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+:root {
+    /* Colores principales */
+    --ion-color-primary: #e36e29;
+    --ion-color-primary-rgb: 227, 110, 41;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #ca5f23;
+    --ion-color-primary-tint: #e77e3d;
+
+    --ion-color-secondary: #ffd195;
+    --ion-color-secondary-rgb: 255, 209, 149;
+    --ion-color-secondary-contrast: #000000;
+    --ion-color-secondary-contrast-rgb: 0, 0, 0;
+    --ion-color-secondary-shade: #e0b884;
+    --ion-color-secondary-tint: #ffdaaa;
+
+    --ion-color-tertiary: #5967d4;
+    --ion-color-tertiary-rgb: 89, 103, 212;
+    --ion-color-tertiary-contrast: #ffffff;
+    --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+    --ion-color-tertiary-shade: #4d5abd;
+    --ion-color-tertiary-tint: #6a76d8;
+
+    /* Otros colores comunes */
+    --ion-item-background: #704127;
+    /* fondo para ítems/listas */
+    --ion-text-color: #ffffff;
+    /* color de texto por defecto */
+}
+
+/* Registrar los colores como clases de Ionic */
+.ion-color-primary {
+    --ion-color-base: var(--ion-color-primary);
+    --ion-color-base-rgb: var(--ion-color-primary-rgb);
+    --ion-color-contrast: var(--ion-color-primary-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb);
+    --ion-color-shade: var(--ion-color-primary-shade);
+    --ion-color-tint: var(--ion-color-primary-tint);
+}
+
+.ion-color-secondary {
+    --ion-color-base: var(--ion-color-secondary);
+    --ion-color-base-rgb: var(--ion-color-secondary-rgb);
+    --ion-color-contrast: var(--ion-color-secondary-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-secondary-contrast-rgb);
+    --ion-color-shade: var(--ion-color-secondary-shade);
+    --ion-color-tint: var(--ion-color-secondary-tint);
+}
+
+.ion-color-tertiary {
+    --ion-color-base: var(--ion-color-tertiary);
+    --ion-color-base-rgb: var(--ion-color-tertiary-rgb);
+    --ion-color-contrast: var(--ion-color-tertiary-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-tertiary-contrast-rgb);
+    --ion-color-shade: var(--ion-color-tertiary-shade);
+    --ion-color-tint: var(--ion-color-tertiary-tint);
+}
+
+ion-button[fill="outline"]::part(native) {
+    --background: none !important;
+    --border-width: 2px;
+    --border-radius: 12px;
+    --border-color: var(--ion-color-primary);
+    --color: var(--ion-color-primary);
+}
