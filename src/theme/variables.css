@@ -63,3 +63,9 @@ ion-button[fill="outline"]::part(native) {
     --border-color: var(--ion-color-primary);
     --color: var(--ion-color-primary);
 }
+
+ion-header,
+ion-card {
+    --boxshadow: none !important;
+    box-shadow: none !important;
+}

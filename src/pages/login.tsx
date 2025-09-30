@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonPage, IonContent, IonButton, IonText } from '@ionic/react';
+import { IonPage, IonContent, IonButton, IonText, IonGrid, IonCol, IonRow } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { useAuth, AuthProvider } from '../contexts/authcontext';
 import { shortenAddress } from '../utils/format';
@@ -32,12 +32,18 @@ const Login: React.FC = () => {
             <IonContent className="ion-padding ">
                 {address ? (
                     <>
-                        <div className='center-content main'>
-                            <IonText class='subtittle t2 addr'>Conectado: {shortenAddress(address)}</IonText>
-                            <IonButton className='bmain' color={'primary'} expand="block" onClick={() => history.replace('/tabs')}>
-                                Continuar
-                            </IonButton>
-                        </div>
+                        <IonGrid className='center-content main'>
+                            <IonRow>
+                                <IonCol size='12'>
+                                    <div className='t2'>
+                                        <IonText class='subtittle addr'>Conectado: {shortenAddress(address)}</IonText>
+                                        <IonButton className='bmain' color={'primary'} expand="block" onClick={() => history.replace('/tabs')}>
+                                            Continuar
+                                        </IonButton>
+                                    </div>
+                                </IonCol>
+                            </IonRow>
+                        </IonGrid>
                     </>
                 ) : (
                     <>
