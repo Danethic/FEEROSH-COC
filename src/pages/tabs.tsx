@@ -1,6 +1,6 @@
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, IonRouterLink } from '@ionic/react';
 import { Redirect, Route, } from 'react-router-dom';
-import { home, person, settings } from 'ionicons/icons';
+import { home, person, settings, storefront } from 'ionicons/icons';
 
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
@@ -23,10 +23,10 @@ const Tabs: React.FC = () => {
                     <IonIcon aria-hidden="true" icon={home} />
                 </IonTabButton>
                 <IonTabButton tab="tab2" href="/tabs/tab2">
-                    <IonIcon aria-hidden="true" icon={person} />
+                    <IonIcon aria-hidden="true" icon={storefront} />
                 </IonTabButton>
                 <IonTabButton tab="tab3" href="/tabs/tab3">
-                    <IonIcon aria-hidden="true" icon={settings} />
+                    <IonIcon aria-hidden="true" icon={person} />
                 </IonTabButton>
             </IonTabBar>
 

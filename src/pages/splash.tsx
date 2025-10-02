@@ -15,8 +15,10 @@ const Splash: React.FC = () => {
 
     return (
         <IonPage>
-            <IonContent className="splash ion-padding center-content ">
-                <img src={logo} alt="logo" className="splash-logo pnl" />
+            <IonContent className="splash">
+                <div className='splash-logo-container'>
+                    <img src={logo} alt="logo" className="splash-logo" />
+                </div>
             </IonContent>
         </IonPage>
     );

@@ -1,7 +1,7 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonCard, IonCardContent, IonButton, IonGrid, IonRow, IonCol, IonSearchbar, IonText } from '@ionic/react';
+import { IonContent, IonAvatar, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonCard, IonCardContent, IonButton, IonGrid, IonRow, IonCol, IonSearchbar, IonText } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { useHistory } from 'react-router';
-import { warning, star, arrowForwardOutline } from 'ionicons/icons';
+import { warning, star, personCircle, notifications, arrowForwardOutline, backspace, barChart } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 
 const Tab1: React.FC = () => {
@@ -26,7 +26,13 @@ const Tab1: React.FC = () => {
 
       <IonHeader translucent={true} collapse='fade'>
         <IonToolbar >
+          <IonButton slot='start' color={'background'} >
+            <IonIcon slot='' size={''} icon={barChart}></IonIcon>
+          </IonButton>
           <IonTitle className=''>Home</IonTitle>
+          <IonButton slot='end' color={'background'}>
+            <IonIcon slot='' size={''} icon={notifications}></IonIcon>
+          </IonButton>
         </IonToolbar>
       </IonHeader>
 
@@ -40,9 +46,10 @@ const Tab1: React.FC = () => {
                   <EstadoIcono color={temporadaEnCurso ? "green" : "red"} />
                 </span></h2>
                 <div className='left-align'>
-                  <div>
+                  <div className='prize'>
                     <IonText className='subtittle '> Premio por jugador</IonText>
-                    <h3 className='tittle'>$150,00</h3></div>
+                    <h3 className='tittle'>$150,00</h3>
+                  </div>
                   <IonButton className='bmain'>
                     let's Play
                   </IonButton>
@@ -56,18 +63,18 @@ const Tab1: React.FC = () => {
               </IonCol>
             </IonRow>
 
-            <IonRow className='ion-justify-content-evenly'>
+            <IonRow className='ion-align-content-center ion-justify-content-center  row2'>
               <IonCol size='6' sizeMd='4' className='col2'>
                 <IonCard className='t2'>
                   <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam, dolor illum similique quis quisquam non accusamus dicta debitis quo? Soluta ad dicta nihil quos possimus quaerat dignissimos, exercitationem repellendus!</h2>
                 </IonCard>
               </IonCol>
-              <IonCol size='6' pushMd='4' sizeMd='4' className='col2'>
+              <IonCol size='6' sizeMd='4' className='col2'>
                 <IonCard className='t2'>
                   <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam, dolor illum similique quis quisquam non accusamus dicta debitis quo? Soluta ad dicta nihil quos possimus quaerat dignissimos, exercitationem repellendus!</h2>
                 </IonCard>
               </IonCol>
-              <IonCol size='12' pullMd='4' sizeMd='4' className='col2'>
+              <IonCol size='12' sizeMd='4' className='col2'>
                 <IonCard className='t3'>
                   <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam, dolor illum similique quis quisquam non accusamus dicta debitis quo? Soluta ad dicta nihil quos possimus quaerat dignissimos, exercitationem repellendus!</h2>
                 </IonCard>

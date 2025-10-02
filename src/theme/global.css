@@ -8,15 +8,44 @@ ion-content {
     align-items: center;
 }
 
+.splash {
+    --background: #452413;
+
+}
+
+.splash-logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.toast {
+    --background: var(--ion-color-secondary);
+    text-align: center;
+    --max-width: fit-content;
+    --height: 30px;
+    opacity: 100%;
+    font-size: x-small;
+}
+
 ion-toolbar {
     --background: #452413;
     --color: var(primary);
     --min-height: 5vh;
+
+    ion-button {
+        --box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
 
 ion-title {
     text-align: center;
     font-size: 1rem;
+    color: var(--ion-color-secondary);
 }
 
 ion-button {
@@ -66,6 +95,7 @@ ion-row {
 
 .k {
     border-radius: 0px !important;
+    min-height: 100%;
 }
 
 .left-align {
@@ -97,9 +127,10 @@ ion-row {
 
 .t3 {
     padding: 10px;
-    margin: 2px 0;
+    margin: 8px 2px;
     border-radius: 8px;
     background-color: var(--ion-color-primary);
+    max-width: 400px !important;
 }
 
 .inline {
@@ -153,6 +184,18 @@ ion-row {
     text-align: center;
 }
 
+.prize {
+
+    h3 {
+        color: var(--ion-color-success) !important;
+        font-size: xx-large !important;
+    }
+
+    ion-text {
+        color: var(--ion-color-success) !important;
+    }
+}
+
 /* Títulos */
 .title {
     color: #ffd690;
@@ -190,6 +233,14 @@ ion-row {
     width: max-content;
     padding: 2px 5px;
     justify-self: center;
+}
+
+.connect {
+    .t2 {
+        align-self: center;
+        padding: 20px 20px;
+        max-width: 450px !important;
+    }
 }
 
 .col1 ion-text,
@@ -259,6 +310,7 @@ ion-row {
         h2 {
             font-size: 0.7rem;
             color: #452413;
+
         }
     }
 }
@@ -272,5 +324,51 @@ ion-row {
     h2 {
         font-size: 0.7rem;
         color: #452413;
+    }
+}
+
+.col1,
+.col3 {
+    max-width: 400px !important;
+}
+
+.col2 {
+    max-width: 300px !important;
+}
+
+.uSection {
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--ion-color-secondary);
+
+    ion-avatar {
+        margin: 0 auto;
+        width: 80px;
+        height: 80px
+    }
+
+}
+
+.tab2 {
+    .t2 {
+        margin: 15px !important;
+    }
+
+    ion-segment-button {
+        --color-checked: var(--ion-color-primary);
+        --color: var(--ion-color-secondary)
+    }
+
+    ion-list,
+    ion-item {
+        color: var(--ion-color-secondary);
+        background: none !important;
+        --background: none !important;
+        border-radius: 10px;
+    }
+
+    ion-icon {
+        color: var(--ion-color-secondary);
     }
 }

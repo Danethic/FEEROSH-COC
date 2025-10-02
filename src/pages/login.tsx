@@ -17,7 +17,7 @@ const Login: React.FC = () => {
         try {
             await connect();
             console.log('connect() resolved, address:', address);
-            history.replace('/app/tab1');
+            history.replace('/tabs/tab1');
         } catch (e: any) {
             console.error('connect error', e);
             setError(e?.message || 'Error al conectar la wallet');
@@ -47,13 +47,14 @@ const Login: React.FC = () => {
                     </>
                 ) : (
                     <>
-                        <div className='center-content main'>
-                            <h2 className="title">Inicia sesión</h2>
-                            <p className="subtitle">Conecta tu wallet para comenzar</p>
-                            <IonButton className='bmain' expand="block" onClick={handleConnect} disabled={loading}>
-                                {loading ? 'Conectando...' : 'Conectar con MetaMask'}
-                            </IonButton>
-                            {error && <p className="error">{error}</p>} </div>
+                        <div className='main center-content connect'>
+                            <div className='t2 mainrow'>
+                                <h2 className="title">Inicia sesión</h2>
+                                <p className="subtitle">Conecta tu wallet para comenzar</p>
+                                <IonButton className='bmain' expand="block" onClick={handleConnect} disabled={loading}>
+                                    {loading ? 'Conectando...' : 'Conectar con MetaMask'}
+                                </IonButton>
+                                {error && <p className="error">{error}</p>} </div></div>
                     </>
 
                 )}
