@@ -19,7 +19,6 @@ import {
   IonToast
 } from "@ionic/react";
 import { useState, useEffect } from "react";
-import { createAnimation } from "@ionic/react";
 import { useHistory } from "react-router";
 import { settingsOutline, lockClosedOutline, logOutOutline, notifications, arrowBack, text, chatbox, help, chatbubble, barChart, chatboxEllipses, sad, mail, gitNetwork, eye, eyeOff } from "ionicons/icons";
 import { useAuth } from "../contexts/authcontext";
@@ -69,6 +68,8 @@ const Tab3: React.FC = () => {
     } catch (e: any) {
       console.error('connect error', e);
       setError(e?.message || 'Error al desconetar');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,7 +91,7 @@ const Tab3: React.FC = () => {
 
 
 
-  const walletAddress = (shortenAddress(address || '')) ?? 'no conected'; // ⚡ luego traer de contexto/auth
+  const walletAddress = address ? shortenAddress(address) : 'no conectado'; // ⚡ luego traer de contexto/auth
 
   return (
     <IonPage>
@@ -99,11 +100,11 @@ const Tab3: React.FC = () => {
           <>
             <IonToolbar >
               <IonButton slot='start' color={'background'} >
-                <IonIcon slot='' size={''} icon={chatbox}></IonIcon>
+                <IonIcon size={''} icon={chatbox}></IonIcon>
               </IonButton>
               <IonTitle className=''>Profile</IonTitle>
               <IonButton slot='end' color={'background'}>
-                <IonIcon slot='' size={''} icon={notifications}></IonIcon>
+                <IonIcon size={''} icon={notifications}></IonIcon>
               </IonButton>
             </IonToolbar>
           </>) : (
@@ -121,7 +122,7 @@ const Tab3: React.FC = () => {
         )}
 
       </IonHeader>
-      <IonContent className="tab2">
+      <IonContent fullscreen className="tab2">
         {address ? (
           <>
 
@@ -207,7 +208,7 @@ const Tab3: React.FC = () => {
                 </IonButton>
                 {error && <p className="error">{error}</p>} </div></div>
           </>
-        )};
+        )}
         <IonToast className="toast"
           isOpen={showToast}
           onDidDismiss={() => setShowToast(false)}
