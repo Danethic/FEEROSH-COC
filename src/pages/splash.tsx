@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import logo from '../../public/favicon.png'; // usa tu logo aquí
+import imagotipo from "../svgs/cocisotipo.svg"
 
 const Splash: React.FC = () => {
     const history = useHistory();
@@ -9,7 +9,7 @@ const Splash: React.FC = () => {
     useEffect(() => {
         const t = setTimeout(() => {
             history.replace('/welcome');
-        }, 1800); // 1.8s -> ajusta si quieres más/menos
+        }, 3000); // 3s -> ajusta si quieres más/menos
         return () => clearTimeout(t);
     }, [history]);
 
@@ -17,7 +17,7 @@ const Splash: React.FC = () => {
         <IonPage>
             <IonContent className="splash">
                 <div className='splash-logo-container'>
-                    <img src={logo} alt="logo" className="splash-logo" />
+                    <img src={imagotipo} alt="logo" className="splash-logo" />
                 </div>
             </IonContent>
         </IonPage>

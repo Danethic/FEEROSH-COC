@@ -9,7 +9,7 @@ ion-content {
 }
 
 .splash {
-    --background: #452413;
+    --background: #5F220C;
 
 }
 
@@ -19,6 +19,11 @@ ion-content {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.splash-logo {
+    width: 300px !important;
+    height: auto !important;
 }
 
 .toast {
@@ -31,7 +36,7 @@ ion-content {
 }
 
 ion-toolbar {
-    --background: #452413;
+    --background: #5F220C;
     --color: var(primary);
     --min-height: 5vh;
 
@@ -60,7 +65,7 @@ ion-button span {
 
 
 ion-tab-bar {
-    --background: #452413;
+    --background: #5F220C;
     height: 5%;
     border: 0;
 }
@@ -80,7 +85,7 @@ ion-row {
 }
 
 .dash {
-    background-color: #452413 !important;
+    background-color: #5F220C !important;
     overflow: auto;
 }
 
@@ -89,7 +94,7 @@ ion-row {
 }
 
 .main {
-    background-color: #452413 !important;
+    background-color: #5F220C !important;
     border-radius: 10px;
 }
 
@@ -107,7 +112,7 @@ ion-row {
     padding: 8px;
     margin: 8px 2px;
     border-radius: 10px;
-    background-color: #704127;
+    background-color: #903A14;
     width: auto;
     height: fit-content;
 }
