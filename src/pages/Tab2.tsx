@@ -1,7 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
+import { useTabVisibilityAnimation } from '../hooks/useEnterAnimation';
 
 const Tab2: React.FC = () => {
+
+
   return (
     <IonPage>
       <IonHeader>

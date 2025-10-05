@@ -42,7 +42,7 @@ const walletConnectAdapter = (function () {
         isAvailable: () => true,
         connect: async () => {
             provider = await EthereumProvider.init({
-                projectId: 'YOUR_WALLETCONNECT_PROJECT_ID', // 🔑 reemplaza esto
+                projectId: '60c6e67c4d68fcaa28830877a17371ee', // 🔑 reemplaza esto
                 chains: [mainnet.id],
                 showQrModal: true,
             });

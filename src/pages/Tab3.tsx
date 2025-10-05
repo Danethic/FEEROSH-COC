@@ -91,8 +91,7 @@ const Tab3: React.FC = () => {
 
 
 
-  const walletAddress = address ? shortenAddress(address) : 'no conectado'; // ⚡ luego traer de contexto/auth
-
+  const walletAddress = address ? shortenAddress(address) : 'no conectado'; 
   return (
     <IonPage>
       <IonHeader translucent={true} collapse='fade'>
@@ -204,7 +203,7 @@ const Tab3: React.FC = () => {
                 <h2 className="title">Inicia sesión</h2>
                 <p className="subtitle">Conecta tu wallet para comenzar</p>
                 <IonButton className='bmain' expand="block" onClick={handleConnect} disabled={loading}>
-                  {loading ? 'Conectando...' : 'Conectar con MetaMask'}
+                  {loading ? 'Conectando...' : 'Conectar'}
                 </IonButton>
                 {error && <p className="error">{error}</p>} </div></div>
           </>

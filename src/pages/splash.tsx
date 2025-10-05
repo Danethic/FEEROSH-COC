@@ -8,7 +8,7 @@ const Splash: React.FC = () => {
 
     useEffect(() => {
         const t = setTimeout(() => {
-            history.replace('/welcome');
+            history.push('/welcome');
         }, 3000); // 3s -> ajusta si quieres más/menos
         return () => clearTimeout(t);
     }, [history]);

@@ -8,12 +8,16 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
+import {  useTabVisibilityAnimation } from '../hooks/useEnterAnimation';
 
 
 const Tab1: React.FC = () => {
   const history = useHistory();
 
   const [temporadaEnCurso, setTemporadaEnCurso] = useState<boolean>(false);
+
+  const anim = useTabVisibilityAnimation('up');
+  
 
   const EstadoIcono: React.FC<{ color: string }> = ({ color }) => (
     <span

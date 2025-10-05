@@ -10,9 +10,6 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
 
 import Login from './pages/login';
 import Tabs from './pages/tabs';
@@ -50,12 +47,14 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import './theme/global.css';
 
+import { fadeSlideAnimation } from './Animations/FadeSlide';
+
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
+    <IonReactRouter >
+      <IonRouterOutlet animated={true} animation={fadeSlideAnimation}>
         <Route exact path={'/splash'}><Splash /></Route>
         <Route exact path={"/welcome"}><Welcome /> </Route>
         <Route exact path={"/login"}><Login /> </Route>

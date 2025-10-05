@@ -37,7 +37,7 @@ const Login: React.FC = () => {
                                 <IonCol size='12'>
                                     <div className='t2'>
                                         <IonText class='subtittle addr'>Conectado: {shortenAddress(address)}</IonText>
-                                        <IonButton className='bmain' color={'primary'} expand="block" onClick={() => history.replace('/tabs')}>
+                                        <IonButton className='bmain' color={'primary'} expand="block" onClick={() => history.push('/tabs')}>
                                             Continuar
                                         </IonButton>
                                     </div>
@@ -52,7 +52,7 @@ const Login: React.FC = () => {
                                 <h2 className="title">Inicia sesión</h2>
                                 <p className="subtitle">Conecta tu wallet para comenzar</p>
                                 <IonButton className='bmain' expand="block" onClick={handleConnect} disabled={loading}>
-                                    {loading ? 'Conectando...' : 'Conectar con MetaMask'}
+                                    {loading ? 'Conectando...' : 'Conectar'}
                                 </IonButton>
                                 {error && <p className="error">{error}</p>} </div></div>
                     </>
