@@ -20,7 +20,7 @@ import {
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { settingsOutline, lockClosedOutline, logOutOutline, notifications, arrowBack, text, chatbox, help, chatbubble, barChart, chatboxEllipses, sad, mail, gitNetwork, eye, eyeOff } from "ionicons/icons";
+import { settingsOutline, lockClosedOutline, logOutOutline, notifications, chatbox, eyeOff } from "ionicons/icons";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
 

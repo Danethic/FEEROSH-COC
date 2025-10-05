@@ -189,9 +189,21 @@ ion-row {
     text-align: center;
 }
 
+.bril {
+    color: #fff;
+    box-shadow:
+        0 0 5px #fff,
+        0 0 10px #ffd195,
+        0 0 20px #ffb347,
+        0 0 40px #ff9800;
+}
+
 .prize {
 
+    margin-top: 12px;
+
     h3 {
+
         color: var(--ion-color-success) !important;
         font-size: xx-large !important;
     }
@@ -229,8 +241,14 @@ ion-row {
     color: var(--ion-color-danger);
 }
 
+.tmpcont {
+    max-width: min-content;
+    margin: 0 auto;
+}
+
 .temptittle {
-    font-size: medium;
+    display: flex;
+    font-size: x-small;
     font-weight: 600;
     margin: 0;
     color: #ffd195;
@@ -238,6 +256,40 @@ ion-row {
     width: max-content;
     padding: 2px 5px;
     justify-self: center;
+    align-self: center;
+}
+
+.token-data {
+    color: var(--ion-color-secondary);
+    margin: 15px 5px;
+
+    .tname {
+        font-size: medium !important;
+    }
+
+    h3 {
+        margin: 5px 0 10px 0;
+    }
+
+    p {
+        margin: 0 0 0 5px;
+
+    }
+
+    .minitittle {
+        font-size: small;
+        padding: 0 !important;
+        text-align: end;
+    }
+}
+
+.ad {
+
+    color: #ffd195;
+}
+
+.pet-box {
+    text-align: center;
 }
 
 .connect {
@@ -305,6 +357,8 @@ ion-row {
 
     .t2 {
 
+        margin: 0 auto;
+
         h2 {
             font-size: 0.7rem;
             color: #ffd690;
@@ -312,6 +366,9 @@ ion-row {
     }
 
     .t3 {
+
+        margin: 0 auto;
+
         h2 {
             font-size: 0.7rem;
             color: #452413;
@@ -338,7 +395,13 @@ ion-row {
 }
 
 .col2 {
-    max-width: 300px !important;
+    .t2 {
+        max-width: 300px !important;
+    }
+
+    .t3 {
+        max-width: 500px !important;
+    }
 }
 
 .uSection {

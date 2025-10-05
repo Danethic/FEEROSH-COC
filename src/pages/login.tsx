@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IonPage, IonContent, IonButton, IonText, IonGrid, IonCol, IonRow } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import { useAuth, AuthProvider } from '../contexts/authcontext';
+import { useAuth } from '../contexts/authcontext';
 import { shortenAddress } from '../utils/format';
 
 const Login: React.FC = () => {
