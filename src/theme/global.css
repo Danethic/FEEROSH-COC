@@ -47,6 +47,22 @@ ion-toolbar {
     }
 }
 
+ion-searchbar.custom {
+    color: #5F220C !important;
+
+    input {
+        height: 25px !important;
+        border-radius: 5px !important;
+
+
+    }
+
+    ion-icon {
+        align-self: anchor-center !important;
+    }
+
+}
+
 ion-title {
     text-align: center;
     font-size: 1rem;
@@ -107,6 +123,19 @@ ion-row {
     text-align: left;
 }
 
+.welcome {
+    justify-content: center;
+    max-width: max-content;
+}
+
+.login {
+    width: 50vw !important;
+
+    .t2 {
+        padding: 20px 5px;
+    }
+}
+
 
 .t2 {
     padding: 8px;
@@ -163,9 +192,23 @@ ion-row {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
     height: 100%;
+}
+
+.base {
+    display: flex;
+    min-width: 200px;
+    max-width: 500px;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+
+    @media (max-width: 520px) {
+        display: contents !important;
+    }
 }
 
 .pnl {
@@ -356,7 +399,7 @@ ion-row {
 .col2 {
 
     .t2 {
-
+        max-width: 300px !important;
         margin: 0 auto;
 
         h2 {
@@ -367,6 +410,7 @@ ion-row {
 
     .t3 {
 
+        max-width: 500px !important;
         margin: 0 auto;
 
         h2 {
@@ -392,16 +436,6 @@ ion-row {
 .col1,
 .col3 {
     max-width: 400px !important;
-}
-
-.col2 {
-    .t2 {
-        max-width: 300px !important;
-    }
-
-    .t3 {
-        max-width: 500px !important;
-    }
 }
 
 .uSection {
@@ -438,5 +472,57 @@ ion-row {
 
     ion-icon {
         color: var(--ion-color-secondary);
+    }
+}
+
+.action-feed {
+    h2 {
+        font-size: small;
+        color: var(--ion-color-secondary);
+        margin: 10px 0;
+    }
+
+    ion-list {
+        background: none !important;
+        border-radius: 15px;
+    }
+
+    ion-label {
+        margin: 5px 0;
+    }
+}
+
+.RR1 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffd690;
+    font-weight: 60;
+    font-size: 0.8rem;
+
+    ion-col {
+        text-align: justify;
+
+        div {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+    }
+}
+
+.Ranking-feed {
+    ion-toolbar {
+        --background: none !important;
+
+        ion-title {
+            font-size: small !important;
+        }
+
+        ion-button {
+            --background: none !important;
+
+            ion-icon {
+                color: var(--ion-color-secondary) !important;
+            }
+        }
     }
 }

@@ -29,14 +29,14 @@ const Login: React.FC = () => {
 
     return (
         <IonPage>
-            <IonContent className="ion-padding ">
+            <IonContent className="ion-padding  ">
                 {address ? (
                     <>
                         <IonGrid className='center-content main'>
-                            <IonRow>
+                            <IonRow className='login'>
                                 <IonCol size='12'>
                                     <div className='t2'>
-                                        <IonText class='subtittle addr'>Conectado: {shortenAddress(address)}</IonText>
+                                        <IonText class='subtittle addr'>Conectado: <p>{shortenAddress(address)}</p></IonText>
                                         <IonButton className='bmain' color={'primary'} expand="block" onClick={() => history.push('/tabs')}>
                                             Continuar
                                         </IonButton>

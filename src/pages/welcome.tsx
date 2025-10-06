@@ -8,8 +8,8 @@ const Welcome: React.FC = () => {
     return (
         <IonPage>
             <IonContent className="ion-padding">
-                <IonGrid className='center-content main'>
-                    <IonRow className='t2'>
+                <IonGrid className='center-content main '>
+                    <IonRow className='t2 welcome'>
                         <IonCol size='12'>
                             <h2 className="title myscl">Bienvenido</h2>
                             <h4 className="subtitle">
