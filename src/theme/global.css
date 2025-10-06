@@ -63,6 +63,14 @@ ion-searchbar.custom {
 
 }
 
+ion-select::part(icon){
+    color: var(--ion-color-primary);
+}
+
+ion-popover::part(content) {
+  border-radius: 12px;
+}
+
 ion-title {
     text-align: center;
     font-size: 1rem;
@@ -112,6 +120,7 @@ ion-row {
 .main {
     background-color: #5F220C !important;
     border-radius: 10px;
+    overflow: auto;
 }
 
 .k {
@@ -525,4 +534,24 @@ ion-row {
             }
         }
     }
+}
+
+.accordion{
+
+    padding: 0 ;
+    margin: 0;
+    
+    ion-accordion{
+        margin: 0 auto !important;
+        background: none !important;
+        box-shadow: none !important;
+
+        ion-item{          
+
+            ion-select{
+                --background: none !important;  
+                }
+            }
+        }
+    
 }

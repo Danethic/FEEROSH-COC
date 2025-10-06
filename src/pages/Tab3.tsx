@@ -16,11 +16,16 @@ import {
   IonItem,
   IonToggle,
   IonIcon,
-  IonToast
+  IonToast,
+  IonAccordion,
+  IonAccordionGroup,
+  IonText,
+  IonSelect,
+  IonSelectOption
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { settingsOutline, lockClosedOutline, logOutOutline, notifications, chatbox, eyeOff } from "ionicons/icons";
+import { settingsOutline, lockClosedOutline, logOutOutline, notifications,informationCircleOutline, chatbox, eyeOff } from "ionicons/icons";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
 
@@ -89,6 +94,39 @@ const Tab3: React.FC = () => {
     }
   };
 
+// Estados locales
+const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "Español");
+const [moneda, setMoneda] = useState(localStorage.getItem("moneda") || "USD");
+const [biometria, setBiometria] = useState(localStorage.getItem("biometria") === "true");
+const [dosFA, setDosFA] = useState(localStorage.getItem("dosFA") === "true");
+
+// Handlers
+const handleIdiomaChange = (valor: string) => {
+  setIdioma(valor);
+  localStorage.setItem("idioma", valor);
+};
+
+const handleMonedaChange = (valor: string) => {
+  setMoneda(valor);
+  localStorage.setItem("moneda", valor);
+};
+
+const handleBiometriaChange = (checked: boolean) => {
+  setBiometria(checked);
+  localStorage.setItem("biometria", String(checked));
+};
+
+const handle2FAConfig = () => {
+  const nuevoEstado = !dosFA;
+  setDosFA(nuevoEstado);
+  localStorage.setItem("dosFA", String(nuevoEstado));
+  setToastMsg(
+    nuevoEstado ? "2FA activado correctamente" : "2FA desactivado"
+  );
+  setShowToast(true);
+};
+
+
 
 
   const walletAddress = address ? shortenAddress(address) : 'no conectado'; 
@@ -141,7 +179,7 @@ const Tab3: React.FC = () => {
                 </IonButton>
               </div>
 
-              <div className="t2">
+              <div className="t2 prof-segmets">
                 {/* Tabs internas */}
                 <IonSegment value={tab} onIonChange={e => setTab(e.detail.value as any)}>
                   <IonSegmentButton value="nfts">
@@ -179,18 +217,88 @@ const Tab3: React.FC = () => {
                         disabled={toggleDisabled}
                         onIonChange={e => handleToggleNotificaciones(e.detail.checked)} />
                     </IonItem>
-                    <IonItem button>
-                      <IonIcon icon={settingsOutline} slot="start" />
-                      <IonLabel>Preferencias</IonLabel>
-                    </IonItem>
-                    <IonItem button>
-                      <IonIcon icon={lockClosedOutline} slot="start" />
-                      <IonLabel>Privacidad</IonLabel>
-                    </IonItem>
-                    <IonItem button detail={true} color="none" onClick={handleDisconnect}>
-                      <IonIcon icon={logOutOutline} slot="start" color="danger" />
-                      <IonLabel color={"danger"}>Desconectar Wallet</IonLabel>
-                    </IonItem>
+                    
+                    {/* 🧩 Acordeón de ajustes */}
+                    <IonAccordionGroup expand="inset" className="accordion">
+                      {/* Preferencias */}
+                      <IonAccordion value="preferencias">
+                        <IonItem slot="header" color="none">
+                          <IonIcon icon={settingsOutline} slot="start" />
+                          <IonLabel>Preferencias</IonLabel>
+                        </IonItem>
+                        <div className="ion-padding" slot="content">
+                          <IonItem>
+                            <IonLabel>Idioma</IonLabel>
+                            <IonSelect
+                            interface="popover"
+                            slot="end"
+                              value={idioma}
+                              placeholder="Seleccionar"
+                              onIonChange={(e) => handleIdiomaChange(e.detail.value)}
+                            >
+                              <IonSelectOption value="Español">Español</IonSelectOption>
+                              <IonSelectOption value="Inglés">Inglés</IonSelectOption>
+                              <IonSelectOption value="Portugués">Portugués</IonSelectOption>
+                            </IonSelect>
+                          </IonItem>
+
+                          <IonItem>
+                            <IonLabel slot="start">Moneda</IonLabel>
+                            <IonSelect
+                            slot="end"
+                            interface="popover"
+                              value={moneda}
+                              placeholder="Seleccionar"
+                              onIonChange={(e) => handleMonedaChange(e.detail.value)}
+                            >
+                              <IonSelectOption value="USD">USD</IonSelectOption>
+                              <IonSelectOption value="EUR">EUR</IonSelectOption>
+                              <IonSelectOption value="COP">COP</IonSelectOption>
+                            </IonSelect>
+                          </IonItem>
+                        </div>
+                      </IonAccordion>
+
+                      {/* Seguridad */}
+                      <IonAccordion value="seguridad">
+                        <IonItem slot="header" color="none">
+                          <IonIcon icon={lockClosedOutline} slot="start" />
+                          <IonLabel>Seguridad</IonLabel>
+                        </IonItem>
+                        <div className="ion-padding" slot="content">
+                          <IonItem>
+                            <IonLabel>Verificación biométrica</IonLabel>
+                            <IonToggle
+                            slot="end"
+                              checked={biometria}
+                              onIonChange={(e) => handleBiometriaChange(e.detail.checked)}
+                            />
+                          </IonItem>
+
+                          <IonItem button onClick={handle2FAConfig}>
+                            <IonLabel>Configurar 2FA</IonLabel>
+                          </IonItem>
+                        </div>
+                      </IonAccordion>
+
+                      {/* Otros */}
+                      <IonAccordion value="otros">
+                        <IonItem slot="header" color="none">
+                          <IonIcon icon={informationCircleOutline} slot="start" />
+                          <IonLabel>Otros</IonLabel>
+                        </IonItem>
+                        <div className="ion-padding" slot="content">
+                          <IonItem lines="none">
+                            <IonLabel>Versión de la app</IonLabel>
+                            <IonText slot="end">1.0.0</IonText>
+                          </IonItem>
+                          <IonItem lines="none">
+                            <IonLabel>Soporte</IonLabel>
+                            <IonText slot="end">support@feerosh.io</IonText>
+                          </IonItem>
+                        </div>
+                      </IonAccordion>
+                    </IonAccordionGroup>
                   </IonList>
                 )}
               </div>
