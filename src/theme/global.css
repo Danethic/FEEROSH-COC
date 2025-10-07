@@ -63,12 +63,12 @@ ion-searchbar.custom {
 
 }
 
-ion-select::part(icon){
+ion-select::part(icon) {
     color: var(--ion-color-primary);
 }
 
 ion-popover::part(content) {
-  border-radius: 12px;
+    border-radius: 12px;
 }
 
 ion-title {
@@ -106,6 +106,95 @@ ion-col {
 
 ion-row {
     text-align: center;
+}
+
+ion-modal#profile-modal {
+    --background: #5F220C !important;
+    --height: 60vh;
+    --max-width: 700px;
+    padding: 15px;
+    --border-radius: 15px;
+}
+
+ion-modal#profile-modal::part(backdrop) {
+    background: color-mix(in srgb, var(--ion-color-secondary)80%, transparent);
+}
+
+ion-modal#profile-modal ion-toolbar {
+    --background: #5F220C !important;
+}
+
+ion-modal#profile-modal ion-content {
+    --background: #5F220C !important;
+
+    ion-item {
+        --background: var(--ion-color-secondary);
+        --border-radius: 15px;
+        margin: 5px;
+        --color: #5F220C;
+    }
+
+    ion-note {
+        color: #903A14;
+        font-size: small;
+        font-weight: 700;
+        opacity: 0.5;
+    }
+
+    .t2 {
+
+        background: none !important;
+        margin: 0 auto;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        ion-button {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+ion-modal#nft-modal {
+    --background: #5F220C !important;
+    --height: 60vh;
+    --max-width: 700px;
+    padding: 15px;
+    --border-radius: 15px;
+}
+
+ion-modal#nft-modal::part(backdrop) {
+    background: color-mix(in srgb, var(--ion-color-secondary)80%, transparent);
+}
+
+ion-modal#nft-modal ion-toolbar {
+    --background: #5F220C !important;
+}
+
+ion-modal#nft-modal ion-content {
+    --background: #5F220C !important;
+
+    ion-item {
+        --background: var(--ion-color-secondary);
+        --border-radius: 15px;
+        margin: 5px;
+        --color: #5F220C;
+    }
+
+    .t2 {
+
+        background: none !important;
+        margin: 0 auto;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        ion-button {
+            margin: 0;
+            padding: 0;
+        }
+    }
 }
 
 .dash {
@@ -214,6 +303,7 @@ ion-row {
     justify-content: center;
     align-self: center;
     justify-self: center;
+    min-height: 90vh !important;
 
     @media (max-width: 520px) {
         display: contents !important;
@@ -536,22 +626,51 @@ ion-row {
     }
 }
 
-.accordion{
+.accordion {
 
-    padding: 0 ;
+    padding: 0;
     margin: 0;
-    
-    ion-accordion{
+
+    ion-accordion {
         margin: 0 auto !important;
         background: none !important;
         box-shadow: none !important;
 
-        ion-item{          
+        ion-item {
 
-            ion-select{
-                --background: none !important;  
-                }
+            ion-select {
+                --background: none !important;
             }
         }
-    
+    }
+
+}
+
+.logout-item {
+
+    --detail-icon-color: var(--ion-color-danger);
+    --detail-icon-opacity: 1;
+}
+
+.notifications-modal::part(content) {
+    width: 340px;
+    max-width: 92vw;
+    --background: #2b1a10;
+    color: #ffd690;
+    border-left: 1px solid #ffd690;
+    box-shadow: -4px 0 16px rgba(255, 214, 144, 0.12);
+}
+
+.notifications-modal ion-item {
+    --background: transparent;
+    color: #ffd690;
+    border-bottom: 1px solid rgba(255, 214, 144, 0.06);
+}
+
+.notifications-modal ion-badge {
+    --background: #ff3b30;
+    --color: #fff;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 8px;
 }

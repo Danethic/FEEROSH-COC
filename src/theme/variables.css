@@ -56,6 +56,10 @@
     --ion-color-tint: var(--ion-color-tertiary-tint);
 }
 
+.ion-color-background {
+    --ion-item-background: #5F220C;
+}
+
 ion-button[fill="outline"]::part(native) {
     --background: none !important;
     --border-width: 2px;
