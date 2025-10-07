@@ -31,6 +31,9 @@ import { useHistory } from "react-router";
 import { settingsOutline, lockClosedOutline, logOutOutline, cameraOutline, imageOutline, notifications, informationCircleOutline, chatbox, eyeOff, warning } from "ionicons/icons";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
+import { NotificationButton } from "../components/NotificationButton";
+import { NotificationsPanel } from "../components/NotificationPanel";
+import { useNotifications } from "../contexts/notificationscontext";
 
 
 
@@ -40,99 +43,27 @@ const Tab3: React.FC = () => {
   const { address, disconnect, connect } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [notificaciones, setNotificaciones] = useState<boolean>(true);
   const [toggleDisabled, setToggleDisabled] = useState(false);
+
+const { pushEnabled, setPushEnabled } = useNotifications();
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showNotifPanel, setShowNotifPanel] = useState(false);
 
 
   const [showToast, setShowToast] = useState(false);
   const [toastMsg, setToastMsg] = useState("");
 
-  useEffect(() => {
-    const saved = localStorage.getItem("notificaciones");
-    if (saved !== null) {
-      setNotificaciones(saved === "true");
-    }
-  }, []);
-
-  // tipo
-  type Notif = {
-    id: string;             // id único
-    title: string;
-    body: string;
-    fecha?: string;         // opcional: timestamp legible
-    seen?: boolean;         // leído?
-  };
-
-  // nuevo estado (añádelo junto a tus otros useState)
-  const [notificationsList, setNotificationsList] = useState<Notif[]>(() => {
-    try {
-      const raw = localStorage.getItem("notifications");
-      return raw ? JSON.parse(raw) as Notif[] : [
-        // mock inicial (puedes quitarlo)
-        { id: "1", title: "Recompensa diaria", body: "Has recibido 50 puntos de energía", fecha: new Date().toLocaleString(), seen: false },
-        { id: "2", title: "Ataque exitoso", body: "Tu equipo venció en la última batalla", fecha: new Date().toLocaleString(), seen: true }
-      ];
-    } catch (e) {
-      return [];
-    }
-  });
-  const [showNotifications, setShowNotifications] = useState(false);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem("notifications", JSON.stringify(notificationsList));
-    } catch (e) {
-      console.error("Error guardando notificaciones:", e);
-    }
-  }, [notificationsList]);
-
-  const unreadCount = notificationsList.filter(n => !n.seen).length;
-
-  const markAllAsRead = () => {
-    setNotificationsList(prev => prev.map(n => ({ ...n, seen: true })));
-  };
-
-  const markOneAsRead = (id: string) => {
-    setNotificationsList(prev => prev.map(n => n.id === id ? { ...n, seen: true } : n));
-  };
-
-  const addNotification = (n: Omit<Notif, 'id' | 'fecha' | 'seen'>) => {
-    const newNotif: Notif = {
-      id: Date.now().toString(),
-      fecha: new Date().toLocaleString(),
-      seen: false,
-      ...n
-    };
-    setNotificationsList(prev => [newNotif, ...prev]);
-  };
-
-  const handleOpenNotifications = () => {
-    if (!notificaciones) {
-      // si las notificaciones están desactivadas, avisamos (reutilizamos showToast)
-      setToastMsg("Activa las notificaciones en ajustes para ver alertas");
-      setShowToast(true);
-      return;
-    }
-
-    // abrir panel y marcar como leídas (si quieres marcarlas sólo al leer individualmente, comenta la siguiente línea)
-    markAllAsRead();
-
-    setShowNotifications(true);
-  };
-
-
-
-
 
   // guardar cada vez que cambie
   const handleToggleNotificaciones = (checked: boolean) => {
-    setNotificaciones(checked);
-    localStorage.setItem("notificaciones", String(checked));
-
-    setToastMsg(checked ? "Notificaciones activadas" : "Notificaciones desactivadas");
+    setPushEnabled(checked);
+    localStorage.setItem("pushEnabled", String(checked));
+    setToastMsg(
+      checked
+        ? "Notificaciones activadas"
+        : "Notificaciones desactivadas"
+    );
     setShowToast(true);
-
     setToggleDisabled(true);
     setTimeout(() => setToggleDisabled(false), 1500);
   };
@@ -248,22 +179,7 @@ const Tab3: React.FC = () => {
                 <IonIcon size={''} icon={chatbox}></IonIcon>
               </IonButton>
               <IonTitle className=''>Profile</IonTitle>
-              <IonButton slot='end' color={'background'} onClick={handleOpenNotifications} style={{ position: 'relative' }} disabled={!notificaciones}>
-                <IonIcon size={''} icon={notifications} />
-                {notificaciones && unreadCount > 0 && (
-                  <div style={{
-                    position: 'absolute',
-                    top: 2,
-                    right: 2,
-                    width: 12,
-                    height: 12,
-                    borderRadius: 8,
-                    background: '#ff3b30', // rojo
-                    boxShadow: '0 0 6px rgba(255,59,48,0.9)'
-                  }} />
-                )}
-              </IonButton>
-
+              <NotificationButton slot="end" onClick={() => setShowNotifPanel(true)} />
             </IonToolbar>
           </>) : (
           <>
@@ -335,9 +251,9 @@ const Tab3: React.FC = () => {
                         <IonIcon icon={notifications} slot="start" />
                         <IonLabel>Notificaciones</IonLabel>
                         <IonToggle slot="end"
-                          checked={notificaciones}
+                          checked={pushEnabled}
                           disabled={toggleDisabled}
-                          onIonChange={e => handleToggleNotificaciones(e.detail.checked)} />
+                          onIonChange={(e) => {handleToggleNotificaciones(e.detail.checked) }} />
                       </IonItem>
 
                       {/* 🧩 Acordeón de ajustes */}
@@ -559,42 +475,11 @@ const Tab3: React.FC = () => {
           </IonContent>
         </IonModal>
 
-        <IonModal
-          isOpen={showNotifications}
-          onDidDismiss={() => setShowNotifications(false)}
-          slot="end"
-          initialBreakpoint={1}
-          breakpoints={[0, 1]}
-          className="notifications-modal"
-        >
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Notificaciones</IonTitle>
-              <IonButton slot="end" fill="clear" onClick={() => setShowNotifications(false)}>
-                <IonIcon icon={notifications} />
-              </IonButton>
-            </IonToolbar>
-          </IonHeader>
+        <NotificationsPanel
+  isOpen={showNotifPanel}
+  onClose={() => setShowNotifPanel(false)}
+/>
 
-          <IonContent className="ion-padding">
-            {notificationsList.length === 0 ? (
-              <p>No tienes notificaciones</p>
-            ) : (
-              <IonList>
-                {notificationsList.map(n => (
-                  <IonItem key={n.id} button onClick={() => markOneAsRead(n.id)}>
-                    <IonLabel>
-                      <h3 style={{ margin: 0 }}>{n.title}</h3>
-                      <p style={{ margin: 0, fontSize: '0.85rem', opacity: 0.8 }}>{n.body}</p>
-                      <small style={{ opacity: 0.6 }}>{n.fecha}</small>
-                    </IonLabel>
-                    {!n.seen && <IonBadge color="danger">Nuevo</IonBadge>}
-                  </IonItem>
-                ))}
-              </IonList>
-            )}
-          </IonContent>
-        </IonModal>
 
 
       </IonContent>

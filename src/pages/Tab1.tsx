@@ -14,6 +14,9 @@ import { shortenAddress } from '../utils/format';
 
 import guepardo from '../svgs/guepardo.svg'
 import oso from '../svgs/oso.svg'
+import { NotificationButton } from '../components/NotificationButton';
+import { NotificationsPanel } from '../components/NotificationPanel';
+import { useNotifications } from '../contexts/notificationscontext';
 
 
 const Tab1: React.FC = () => {
@@ -24,6 +27,7 @@ const Tab1: React.FC = () => {
   const anim = useTabVisibilityAnimation('up');
 
   const { jugadores, acciones, fetchJugadores, fetchAcciones } = useGame()
+  const [showNotifPanel, setShowNotifPanel] = useState(false);
 
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
@@ -77,10 +81,8 @@ const Tab1: React.FC = () => {
             <IonIcon slot='' size={''} icon={barChart}></IonIcon>
           </IonButton>
           <IonTitle className=''>Home</IonTitle>
-          <IonButton slot='end' color={'background'}>
-            <IonIcon slot='' size={''} icon={notifications}></IonIcon>
-          </IonButton>
-        </IonToolbar>
+          <NotificationButton slot="end" onClick={() => setShowNotifPanel(true)} />
+          </IonToolbar>
       </IonHeader>
 
       <IonContent>
@@ -282,6 +284,12 @@ const Tab1: React.FC = () => {
             </IonGrid>
           </div>
         </div>
+
+        <NotificationsPanel
+  isOpen={showNotifPanel}
+  onClose={() => setShowNotifPanel(false)}
+/>
+
       </IonContent>
     </IonPage>
   );
