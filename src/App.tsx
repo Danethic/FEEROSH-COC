@@ -15,6 +15,7 @@ import Login from './pages/login';
 import Tabs from './pages/tabs';
 import Welcome from './pages/welcome';
 import Splash from './pages/splash';
+import Game from './pages/Game'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -60,9 +61,7 @@ const App: React.FC = () => (
         <Route exact path={"/login"}><Login /> </Route>
         <Route path={"/tabs"}><Tabs />
         </Route>
-        {/* <Route exact path={"/tab1"}><Tab1 /></Route>
-        <Route exact path={"/tab2"}><Tab2 /></Route>
-        <Route exact path={"/tab3"}><Tab3 /></Route> */}
+        <Route exact path={"/game"}><Game /> </Route>
         <Route exact path={"/"}>
           <Redirect exact from='/' to="/splash" />
         </Route>

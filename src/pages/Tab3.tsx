@@ -23,8 +23,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonModal,
-  IonInput,
-  IonBadge
+  IonInput
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
@@ -45,7 +44,7 @@ const Tab3: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [toggleDisabled, setToggleDisabled] = useState(false);
 
-const { pushEnabled, setPushEnabled } = useNotifications();
+  const { pushEnabled, setPushEnabled } = useNotifications();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showNotifPanel, setShowNotifPanel] = useState(false);
 
@@ -253,7 +252,7 @@ const { pushEnabled, setPushEnabled } = useNotifications();
                         <IonToggle slot="end"
                           checked={pushEnabled}
                           disabled={toggleDisabled}
-                          onIonChange={(e) => {handleToggleNotificaciones(e.detail.checked) }} />
+                          onIonChange={(e) => { handleToggleNotificaciones(e.detail.checked) }} />
                       </IonItem>
 
                       {/* 🧩 Acordeón de ajustes */}
@@ -476,9 +475,9 @@ const { pushEnabled, setPushEnabled } = useNotifications();
         </IonModal>
 
         <NotificationsPanel
-  isOpen={showNotifPanel}
-  onClose={() => setShowNotifPanel(false)}
-/>
+          isOpen={showNotifPanel}
+          onClose={() => setShowNotifPanel(false)}
+        />
 
 
 

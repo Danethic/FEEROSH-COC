@@ -1,7 +1,6 @@
 import React from 'react';
 import { IonPage, IonContent, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
-import { navigate } from 'ionicons/icons';
 
 const Welcome: React.FC = () => {
     const history = useHistory();

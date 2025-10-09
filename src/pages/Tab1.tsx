@@ -16,7 +16,6 @@ import guepardo from '../svgs/guepardo.svg'
 import oso from '../svgs/oso.svg'
 import { NotificationButton } from '../components/NotificationButton';
 import { NotificationsPanel } from '../components/NotificationPanel';
-import { useNotifications } from '../contexts/notificationscontext';
 
 
 const Tab1: React.FC = () => {
@@ -82,7 +81,7 @@ const Tab1: React.FC = () => {
           </IonButton>
           <IonTitle className=''>Home</IonTitle>
           <NotificationButton slot="end" onClick={() => setShowNotifPanel(true)} />
-          </IonToolbar>
+        </IonToolbar>
       </IonHeader>
 
       <IonContent>
@@ -101,7 +100,7 @@ const Tab1: React.FC = () => {
                       <IonText className='subtittle '> Premio por jugador</IonText>
                       <h3 className='tittle'>$150,00</h3>
                     </div>
-                    <IonButton className='bmain'>
+                    <IonButton className='bmain' onClick={() => history.push('/game')} >
                       let's Play
                     </IonButton>
                   </div>
@@ -286,9 +285,9 @@ const Tab1: React.FC = () => {
         </div>
 
         <NotificationsPanel
-  isOpen={showNotifPanel}
-  onClose={() => setShowNotifPanel(false)}
-/>
+          isOpen={showNotifPanel}
+          onClose={() => setShowNotifPanel(false)}
+        />
 
       </IonContent>
     </IonPage>
