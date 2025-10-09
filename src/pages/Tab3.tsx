@@ -6,6 +6,8 @@ import {
   IonContent,
   IonSegment,
   IonSegmentButton,
+  IonSegmentView,
+  IonSegmentContent,
   IonLabel,
   IonGrid,
   IonRow,
@@ -25,7 +27,7 @@ import {
   IonModal,
   IonInput
 } from "@ionic/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { settingsOutline, lockClosedOutline, logOutOutline, cameraOutline, imageOutline, notifications, informationCircleOutline, chatbox, eyeOff, warning } from "ionicons/icons";
 import { useAuth } from "../contexts/authcontext";
@@ -38,7 +40,6 @@ import { useNotifications } from "../contexts/notificationscontext";
 
 const Tab3: React.FC = () => {
   const history = useHistory();
-  const [tab, setTab] = useState<"nfts" | "ajustes">("nfts");
   const { address, disconnect, connect } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -170,7 +171,7 @@ const Tab3: React.FC = () => {
   const walletAddress = address ? shortenAddress(address) : 'no conectado';
   return (
     <IonPage>
-      <IonHeader translucent={true} collapse='fade'>
+      <IonHeader>
         {address ? (
           <>
             <IonToolbar >
@@ -195,7 +196,7 @@ const Tab3: React.FC = () => {
         )}
 
       </IonHeader>
-      <IonContent fullscreen className="tab2">
+      <IonContent className="tab2">
         <div className="base">
           {address ? (
             <>
@@ -217,132 +218,133 @@ const Tab3: React.FC = () => {
                 </div>
 
                 <div className="t2 prof-segmets">
-                  {/* Tabs internas */}
-                  <IonSegment value={tab} onIonChange={e => setTab(e.detail.value as any)}>
-                    <IonSegmentButton value="nfts">
+                  <IonSegment mode="ios" value={'nfts'}>
+                    <IonSegmentButton value="nfts" contentId="nfts">
                       <IonLabel>NFTs</IonLabel>
                     </IonSegmentButton>
-                    <IonSegmentButton value="ajustes">
+                    <IonSegmentButton value="ajustes" contentId="ajustes">
                       <IonLabel>Ajustes</IonLabel>
                     </IonSegmentButton>
                   </IonSegment>
 
-                  {/* Contenido */}
-                  {tab === "nfts" && (
-                    <IonGrid>
-                      <IonRow>
-                        {[1, 2, 3, 4, 5, 6].map((n) => (
-                          <IonCol size="4" key={n}>
-                            <img
-                              src={`https://via.placeholder.com/150?text=NFT+${n}`}
-                              alt={`NFT ${n}`}
-                              style={{ borderRadius: "8px", width: "100%" }}
-                            />
-                          </IonCol>
-                        ))}
-                      </IonRow>
-                    </IonGrid>
-                  )}
-
-                  {tab === "ajustes" && (
-                    <IonList lines="none">
-                      <IonItem>
-                        <IonIcon icon={notifications} slot="start" />
-                        <IonLabel>Notificaciones</IonLabel>
-                        <IonToggle slot="end"
-                          checked={pushEnabled}
-                          disabled={toggleDisabled}
-                          onIonChange={(e) => { handleToggleNotificaciones(e.detail.checked) }} />
-                      </IonItem>
-
-                      {/* 🧩 Acordeón de ajustes */}
-                      <IonAccordionGroup expand="inset" className="accordion">
-                        {/* Preferencias */}
-                        <IonAccordion value="preferencias">
-                          <IonItem slot="header" color="none">
-                            <IonIcon icon={settingsOutline} slot="start" />
-                            <IonLabel>Preferencias</IonLabel>
-                          </IonItem>
-                          <div className="ion-padding" slot="content">
-                            <IonItem>
-                              <IonLabel>Idioma</IonLabel>
-                              <IonSelect
-                                interface="popover"
-                                slot="end"
-                                value={idioma}
-                                placeholder="Seleccionar"
-                                onIonChange={(e) => handleIdiomaChange(e.detail.value)}
-                              >
-                                <IonSelectOption value="Español">Español</IonSelectOption>
-                                <IonSelectOption value="Inglés">Inglés</IonSelectOption>
-                                <IonSelectOption value="Portugués">Portugués</IonSelectOption>
-                              </IonSelect>
-                            </IonItem>
-
-                            <IonItem>
-                              <IonLabel slot="start">Moneda</IonLabel>
-                              <IonSelect
-                                slot="end"
-                                interface="popover"
-                                value={moneda}
-                                placeholder="Seleccionar"
-                                onIonChange={(e) => handleMonedaChange(e.detail.value)}
-                              >
-                                <IonSelectOption value="USD">USD</IonSelectOption>
-                                <IonSelectOption value="EUR">EUR</IonSelectOption>
-                                <IonSelectOption value="COP">COP</IonSelectOption>
-                              </IonSelect>
-                            </IonItem>
-                          </div>
-                        </IonAccordion>
-
-                        {/* Seguridad */}
-                        <IonAccordion value="seguridad">
-                          <IonItem slot="header" color="none">
-                            <IonIcon icon={lockClosedOutline} slot="start" />
-                            <IonLabel>Seguridad</IonLabel>
-                          </IonItem>
-                          <div className="ion-padding" slot="content">
-                            <IonItem>
-                              <IonLabel>Verificación biométrica</IonLabel>
-                              <IonToggle
-                                slot="end"
-                                checked={biometria}
-                                onIonChange={(e) => handleBiometriaChange(e.detail.checked)}
+                  <IonSegmentView>
+                    <IonSegmentContent className="segment-container" id="nfts">
+                      <IonGrid>
+                        <IonRow>
+                          {[1, 2, 3, 4, 5, 6].map((n) => (
+                            <IonCol size="4" key={n}>
+                              <img
+                                src={`https://via.placeholder.com/150?text=NFT+${n}`}
+                                alt={`NFT ${n}`}
+                                style={{ borderRadius: "8px", width: "100%" }}
                               />
-                            </IonItem>
+                            </IonCol>
+                          ))}
+                        </IonRow>
+                      </IonGrid>
+                    </IonSegmentContent>
 
-                            <IonItem button onClick={handle2FAConfig}>
-                              <IonLabel>Configurar 2FA</IonLabel>
-                            </IonItem>
-                          </div>
-                        </IonAccordion>
 
-                        {/* Otros */}
-                        <IonAccordion value="otros">
-                          <IonItem slot="header" color="none">
-                            <IonIcon icon={informationCircleOutline} slot="start" />
-                            <IonLabel>Otros</IonLabel>
-                          </IonItem>
-                          <div className="ion-padding" slot="content">
-                            <IonItem lines="none">
-                              <IonLabel>Versión de la app</IonLabel>
-                              <IonText slot="end">1.0.0</IonText>
-                            </IonItem>
-                            <IonItem lines="none">
-                              <IonLabel>Soporte</IonLabel>
-                              <IonText slot="end">support@feerosh.io</IonText>
-                            </IonItem>
-                          </div>
-                        </IonAccordion>
-                      </IonAccordionGroup>
+                    <IonSegmentContent className="segment-container" id="ajustes">
+                      <IonList lines="none">
+                        <IonItem>
+                          <IonIcon icon={notifications} slot="start" />
+                          <IonLabel>Notificaciones</IonLabel>
+                          <IonToggle slot="end"
+                            checked={pushEnabled}
+                            disabled={toggleDisabled}
+                            onIonChange={(e) => { handleToggleNotificaciones(e.detail.checked) }} />
+                        </IonItem>
 
-                      <IonItem className="logout-item" button detail={true} color="none" onClick={handleDisconnect}>
-                        <IonIcon icon={logOutOutline} slot="start" color="danger" />
-                        <IonLabel color={'danger'}>Desconectar Wallet</IonLabel>
-                      </IonItem>
-                    </IonList>
-                  )}
+                        {/* 🧩 Acordeón de ajustes */}
+                        <IonAccordionGroup expand="inset" className="accordion">
+                          {/* Preferencias */}
+                          <IonAccordion value="preferencias">
+                            <IonItem slot="header" color="none">
+                              <IonIcon icon={settingsOutline} slot="start" />
+                              <IonLabel>Preferencias</IonLabel>
+                            </IonItem>
+                            <div className="ion-padding" slot="content">
+                              <IonItem>
+                                <IonLabel>Idioma</IonLabel>
+                                <IonSelect
+                                  interface="popover"
+                                  slot="end"
+                                  value={idioma}
+                                  placeholder="Seleccionar"
+                                  onIonChange={(e) => handleIdiomaChange(e.detail.value)}
+                                >
+                                  <IonSelectOption value="Español">Español</IonSelectOption>
+                                  <IonSelectOption value="Inglés">Inglés</IonSelectOption>
+                                  <IonSelectOption value="Portugués">Portugués</IonSelectOption>
+                                </IonSelect>
+                              </IonItem>
+
+                              <IonItem>
+                                <IonLabel slot="start">Moneda</IonLabel>
+                                <IonSelect
+                                  slot="end"
+                                  interface="popover"
+                                  value={moneda}
+                                  placeholder="Seleccionar"
+                                  onIonChange={(e) => handleMonedaChange(e.detail.value)}
+                                >
+                                  <IonSelectOption value="USD">USD</IonSelectOption>
+                                  <IonSelectOption value="EUR">EUR</IonSelectOption>
+                                  <IonSelectOption value="COP">COP</IonSelectOption>
+                                </IonSelect>
+                              </IonItem>
+                            </div>
+                          </IonAccordion>
+
+                          {/* Seguridad */}
+                          <IonAccordion value="seguridad">
+                            <IonItem slot="header" color="none">
+                              <IonIcon icon={lockClosedOutline} slot="start" />
+                              <IonLabel>Seguridad</IonLabel>
+                            </IonItem>
+                            <div className="ion-padding" slot="content">
+                              <IonItem>
+                                <IonLabel>Verificación biométrica</IonLabel>
+                                <IonToggle
+                                  slot="end"
+                                  checked={biometria}
+                                  onIonChange={(e) => handleBiometriaChange(e.detail.checked)}
+                                />
+                              </IonItem>
+
+                              <IonItem button onClick={handle2FAConfig}>
+                                <IonLabel>Configurar 2FA</IonLabel>
+                              </IonItem>
+                            </div>
+                          </IonAccordion>
+
+                          {/* Otros */}
+                          <IonAccordion value="otros">
+                            <IonItem slot="header" color="none">
+                              <IonIcon icon={informationCircleOutline} slot="start" />
+                              <IonLabel>Otros</IonLabel>
+                            </IonItem>
+                            <div className="ion-padding" slot="content">
+                              <IonItem lines="none">
+                                <IonLabel>Versión de la app</IonLabel>
+                                <IonText slot="end">1.0.0</IonText>
+                              </IonItem>
+                              <IonItem lines="none">
+                                <IonLabel>Soporte</IonLabel>
+                                <IonText slot="end">support@feerosh.io</IonText>
+                              </IonItem>
+                            </div>
+                          </IonAccordion>
+                        </IonAccordionGroup>
+
+                        <IonItem className="logout-item" button detail={true} color="none" onClick={handleDisconnect}>
+                          <IonIcon icon={logOutOutline} slot="start" color="danger" />
+                          <IonLabel color={'danger'}>Desconectar Wallet</IonLabel>
+                        </IonItem>
+                      </IonList>
+                    </IonSegmentContent>
+                  </IonSegmentView>
                 </div>
               </div>
             </>

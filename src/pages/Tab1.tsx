@@ -74,7 +74,7 @@ const Tab1: React.FC = () => {
   return (
     <IonPage>
 
-      <IonHeader translucent={true} collapse='fade'>
+      <IonHeader >
         <IonToolbar >
           <IonButton slot='start' color={'background'} >
             <IonIcon slot='' size={''} icon={barChart}></IonIcon>

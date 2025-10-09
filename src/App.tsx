@@ -1,13 +1,9 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
   IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  setupIonicReact
+  setupIonicReact,
+  isPlatform
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -50,7 +46,9 @@ import './theme/global.css';
 
 import { fadeSlideAnimation } from './Animations/FadeSlide';
 
-setupIonicReact();
+setupIonicReact({
+  mode: 'md'
+});
 
 const App: React.FC = () => (
   <IonApp>

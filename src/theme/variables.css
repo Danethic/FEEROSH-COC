@@ -57,7 +57,7 @@
 }
 
 .ion-color-background {
-    --ion-item-background: #5F220C;
+    --ion-item-background: #5F220C !important;
 }
 
 ion-button[fill="outline"]::part(native) {

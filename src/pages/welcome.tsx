@@ -18,7 +18,7 @@ const Welcome: React.FC = () => {
                             <IonButton color='primary' className='bmain' onClick={() => history.push('/login')}>
                                 <span>Comenzar <p className='minitittle'>(Conectar Wallet)</p></span>
                             </IonButton>
-                            <IonButton fill={'outline'} color={'primary'} onClick={() => history.replace('/tabs')}>
+                            <IonButton className='bsecond' fill={'outline'} color={'primary'} onClick={() => history.replace('/tabs')}>
                                 Ingresa como invitado
                             </IonButton>
                         </IonCol>
