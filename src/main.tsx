@@ -14,6 +14,7 @@ root.render(
         <NotificationsProvider>
           <App />
         </NotificationsProvider>
+
       </GameProvider>
     </AuthProvider>
   </React.StrictMode>
