@@ -1,4 +1,4 @@
-import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader } from "@ionic/react";
+import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 import { arrowBackOutline, menu } from "ionicons/icons";
 import { useHistory } from "react-router";
 import { useState } from "react";
@@ -20,23 +20,41 @@ const Game: React.FC = () => {
             <IonContent className="game">
                 <div className="content-game">
                     <IonHeader>
+                    <IonToolbar>
                     <IonButton slot="start" className='backbutton' fill="clear" onClick={() => history.push('/tabs')}>
                         <IonIcon color="secondary" slot='' size={''} icon={arrowBackOutline} />
                     </IonButton>
-                    <IonAvatar>
-                        <img
-                      src={profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                      alt="profile"
-                    />
-                    </IonAvatar>
-                    <IonText>
-                        {username || 'UserName'}
-                        <p className="minitittle">{walletAddress}</p>
-                    </IonText>
-                    <IonButton slot="end" className='backbutton' fill="clear" >
+                    <div className="game-center-header">
+                        <IonAvatar slot="">
+                            <img
+                        src={profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                        alt="profile"
+                        />
+                        </IonAvatar>
+                        <IonText slot="">
+                            {username || 'UserName'}
+                            <p className="minitittle">{walletAddress}</p>
+                        </IonText>
+                    </div>
+
+                    <IonButton slot="end" className="backbutton" fill="clear" >
                         <IonIcon color="secondary" slot='' size={''} icon={menu} />
                     </IonButton>
+                    </IonToolbar>
                     </IonHeader>
+
+                    <IonCard className="global-energy">
+                        <div className="team-logos-energy">
+                        <IonAvatar className="teamA"> <img src={profileImage|| "https://cdn-icons-png.flaticon.com/512/149/149071.png"}/></IonAvatar>
+                        <IonAvatar className="teamB"> <img src={profileImage|| "https://cdn-icons-png.flaticon.com/512/149/149071.png"}/></IonAvatar>
+                        </div>
+                        <div className="global-energy-bar">
+                            <div className="goal"></div>
+                            <div className="global-energy-fill" style={{ width: "calc(50% - 21px)" }}> </div>
+                            <div className="impact" style={{background: 'linear-gradient(90deg, #ffffff00, var(--ion-color-secondary) 50%, #ffffff00)'}}></div>
+                        </div>
+                    </IonCard>
+                    
 
                     
 
@@ -45,7 +63,7 @@ const Game: React.FC = () => {
                             <IonCardHeader>
                                 <IonCardTitle className="subtitle">
                                     <div className="energy-bar">
-                                        <div className="energy-fill" style={{ width: "56%" }}> </div>
+                                        <div className="energy-fill" style={{ width: "50%" }}> </div>
                                     </div>
                                     <h5>ENERGY: 550/1800</h5>
                                 </IonCardTitle>
