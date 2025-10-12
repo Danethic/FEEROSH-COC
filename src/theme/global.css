@@ -752,7 +752,7 @@ ion-content.game {
         position: relative;
     }
 
-    ion-toolbar{
+    ion-toolbar {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -763,26 +763,26 @@ ion-content.game {
 
         --background: none !important;
 
-        .game-center-header{
+        .game-center-header {
             display: flex;
             align-content: center;
-            justify-content: space-around;
+            justify-content: space-evenly;
         }
-    
-    
-        ion-avatar{        
+
+
+        ion-avatar {
             width: 40px;
             height: 40px;
-    }
+        }
 
-    ion-text{
+        ion-text {
 
-        align-self: center;
-        padding: 0;
-        font-size: larger !important;
-        color: var(--ion-color-secondary);
+            align-self: center;
+            padding: 0;
+            font-size: larger !important;
+            color: var(--ion-color-secondary);
 
-    }
+        }
 
     }
 
@@ -886,7 +886,7 @@ ion-card.user-panel {
 }
 
 
-.global-energy{
+.global-energy {
     position: relative;
     display: flex;
     z-index: 5;
@@ -896,65 +896,73 @@ ion-card.user-panel {
     background: none;
     justify-content: center;
     margin: 0 auto;
-    padding: 20px 0;        
-    
-    .team-logos-energy{
+    padding: 20px 0;
+
+    .team-logos-energy {
 
         position: absolute;
         display: flex;
         justify-content: space-between;
-        padding: 0 5px;
+        padding: 0 8px;
         margin: 0;
-        top: 5%;
+        top: -10%;
         z-index: 999;
         width: 100%;
         height: max-content;
 
-        ion-avatar{
-            width: 50px;
-            height: 50px;
+        ion-avatar {
+            width: 70px;
+            height: 70px;
+
+            img {
+                width: 100%;
+                height: 100%;
+
+                object-fit: contain;
+            }
         }
-    
+
     }
 
     .global-energy-bar {
-                justify-self: center;
-                position: relative;
-                display: inline-flex;
-                width: 85%;
-                height: 20px;
-                background: linear-gradient(-90deg, #0025b7, #24d3ff);
-                border: 2px solid var(--ion-color-secondary);
-                border-radius: 12px;
-                box-shadow: 0 0 20px #ff6600;
-                overflow: hidden;
-            }
+        justify-self: center;
+        position: relative;
+        display: inline-flex;
+        width: 85%;
+        height: 20px;
+        background: linear-gradient(-90deg, #0025b7, #24d3ff);
+        border: 2px solid var(--ion-color-secondary);
+        border-radius: 12px;
+        box-shadow: 0 0 20px #ff6600;
+        overflow: hidden;
+    }
 
 
 
-            .global-energy-fill {
-                text-align: center;
-                height: 100%;
-                background: linear-gradient(90deg, #ff0000, #ff9900);
-                transition: width 0.4s ease;
-                box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
-            }
+    .global-energy-fill {
+        text-align: center;
+        height: 100%;
+        background: linear-gradient(90deg, #ff0000, #ff9900);
+        transition: width 0.4s ease;
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+    }
 
-            .impact {
-                position: relative;
-                z-index: 6;
-                width: 20px;
-                height: 20px;
-                background: linear-gradient(90deg, #ffffff00, var(--ion-color-secondary) 50%, #ffffff00);
-                top: -20%;
-                left: -3%;
-                margin: 0;
-                padding: 0;
-            }
-            .goal{
-                position: relative;
-                width: 20px;
-                height: 20px;
-                background: #ff0000;
-            }
+    .impact {
+        position: relative;
+        z-index: 6;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(90deg, #ffffff00, var(--ion-color-secondary) 50%, #ffffff00);
+        top: -20%;
+        left: -3%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .goal {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        background: #ff0000;
+    }
 }

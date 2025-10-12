@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
+import { size } from "viem";
 
 
 const Game: React.FC = () => {
@@ -20,43 +21,43 @@ const Game: React.FC = () => {
             <IonContent className="game">
                 <div className="content-game">
                     <IonHeader>
-                    <IonToolbar>
-                    <IonButton slot="start" className='backbutton' fill="clear" onClick={() => history.push('/tabs')}>
-                        <IonIcon color="secondary" slot='' size={''} icon={arrowBackOutline} />
-                    </IonButton>
-                    <div className="game-center-header">
-                        <IonAvatar slot="">
-                            <img
-                        src={profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                        alt="profile"
-                        />
-                        </IonAvatar>
-                        <IonText slot="">
-                            {username || 'UserName'}
-                            <p className="minitittle">{walletAddress}</p>
-                        </IonText>
-                    </div>
+                        <IonToolbar>
+                            <IonButton slot="start" className='backbutton' fill="clear" onClick={() => history.push('/tabs')}>
+                                <IonIcon color="secondary" slot='' size={''} icon={arrowBackOutline} />
+                            </IonButton>
+                            <div className="game-center-header">
+                                <IonAvatar slot="">
+                                    <img
+                                        src={profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                                        alt="profile"
+                                    />
+                                </IonAvatar>
+                                <IonText slot="">
+                                    {username || 'UserName'}
+                                    <p className="minitittle">{walletAddress}</p>
+                                </IonText>
+                            </div>
 
-                    <IonButton slot="end" className="backbutton" fill="clear" >
-                        <IonIcon color="secondary" slot='' size={''} icon={menu} />
-                    </IonButton>
-                    </IonToolbar>
+                            <IonButton slot="end" className="backbutton" fill="clear" >
+                                <IonIcon color="secondary" slot='' size={''} icon={menu} />
+                            </IonButton>
+                        </IonToolbar>
                     </IonHeader>
 
                     <IonCard className="global-energy">
                         <div className="team-logos-energy">
-                        <IonAvatar className="teamA"> <img src={profileImage|| "https://cdn-icons-png.flaticon.com/512/149/149071.png"}/></IonAvatar>
-                        <IonAvatar className="teamB"> <img src={profileImage|| "https://cdn-icons-png.flaticon.com/512/149/149071.png"}/></IonAvatar>
+                            <IonAvatar className="teamA" > <img src={'src/svgs/guepardo_blank_space.svg'} /></IonAvatar>
+                            <IonAvatar className="teamB"> <img src={'src/svgs/oso_blank_space.svg'} /></IonAvatar>
                         </div>
                         <div className="global-energy-bar">
                             <div className="goal"></div>
                             <div className="global-energy-fill" style={{ width: "calc(50% - 21px)" }}> </div>
-                            <div className="impact" style={{background: 'linear-gradient(90deg, #ffffff00, var(--ion-color-secondary) 50%, #ffffff00)'}}></div>
+                            <div className="impact" style={{ background: 'linear-gradient(90deg, #ffffff00, var(--ion-color-secondary) 50%, #ffffff00)' }}></div>
                         </div>
                     </IonCard>
-                    
 
-                    
+
+
 
                     <div className="bottom-space">
                         <IonCard className="user-panel">
