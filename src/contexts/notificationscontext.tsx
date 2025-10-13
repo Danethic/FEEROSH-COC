@@ -29,6 +29,7 @@ export const NotificationsProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.getItem("pushEnabled") === "true"
   );
 
+
   // 🧠 Restaurar notificaciones previas
   useEffect(() => {
     const saved = localStorage.getItem("notifications");

@@ -2,8 +2,7 @@ import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonRouterOutlet,
-  setupIonicReact,
-  isPlatform
+  setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 

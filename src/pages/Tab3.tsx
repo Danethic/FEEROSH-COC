@@ -29,7 +29,7 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { settingsOutline, lockClosedOutline, logOutOutline, cameraOutline, imageOutline, notifications, informationCircleOutline, chatbox, eyeOff, warning } from "ionicons/icons";
+import { settingsOutline, lockClosedOutline, logOutOutline, cameraOutline, imageOutline, notifications, informationCircleOutline, eyeOff, barChart } from "ionicons/icons";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
 import { NotificationButton } from "../components/NotificationButton";
@@ -176,7 +176,7 @@ const Tab3: React.FC = () => {
           <>
             <IonToolbar >
               <IonButton slot='start' color={'background'} >
-                <IonIcon size={''} icon={chatbox}></IonIcon>
+                <IonIcon size={''} icon={barChart}></IonIcon>
               </IonButton>
               <IonTitle className=''>Profile</IonTitle>
               <NotificationButton slot="end" onClick={() => setShowNotifPanel(true)} />

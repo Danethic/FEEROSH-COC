@@ -1,0 +1,33 @@
+ion-content.chatbox {
+    color: #ffd690;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.chatbox ion-segment {
+    --background: #5F220C;
+    border-bottom: 1px solid rgba(255, 214, 144, 0.1);
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    background: #3a1e0e;
+}
+
+.private-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    overflow-x: auto;
+    background: #4a2815;
+    border-top: 1px solid rgba(255, 214, 144, 0.1);
+}
+
+.chat-input {
+    padding: 4px;
+    background: #4a2815;
+    border-top: 1px solid rgba(255, 214, 144, 0.15);
+}

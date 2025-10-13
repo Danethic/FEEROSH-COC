@@ -688,7 +688,7 @@ ion-modal#nft-modal ion-content {
     --detail-icon-opacity: 1;
 }
 
-ion-modal#notifcations-modal {
+ion-modal#notifications-modal {
     --background: #5F220C !important;
     --height: 60vh;
     --max-width: 700px;
@@ -699,16 +699,30 @@ ion-modal#notifcations-modal {
 ion-modal#notifications-modal::part(content) {
     width: 340px;
     max-width: 92vw;
-    background: #2b1a10;
+    --background: #2b1a10;
     color: #ffd690;
-    border-left: 1px solid #ffd690;
-    box-shadow: -4px 0 16px rgba(255, 214, 144, 0.12);
+    --box-shadow: -4px 0 16px rgba(255, 214, 144, 0.12);
+}
+
+ion-modal#notifications-modal ion-list {
+    background: none;
+    color: #ffd690;
 }
 
 ion-modal#notifications-modal ion-item {
-    --background: transparent;
+    --background: none;
     color: #ffd690;
     border-bottom: 1px solid rgba(255, 214, 144, 0.06);
+
+    ion-text {
+        color: var(--ion-color-secondary);
+    }
+}
+
+ion-modal#notifications-modal ion-content {
+    --background: #5F220C;
+    color: #ffd690;
+    --border: none !important;
 }
 
 ion-modal#notifications-modal ion-badge {

@@ -1,8 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonList, IonItem, IonLabel, IonSearchbar, IonTitle, IonToolbar, IonIcon, IonCard, IonButton, IonGrid, IonRow, IonCol, IonText } from '@ionic/react';
 import { useHistory } from 'react-router';
-import { notifications, arrowForwardOutline, flash, flame, barChart, searchOutline, arrowUp, arrowDown } from 'ionicons/icons';
+import { arrowForwardOutline, flash, flame, chatbox, searchOutline, arrowUp, arrowDown } from 'ionicons/icons';
 import { useState } from 'react';
 import { useGame } from '../contexts/gamecontext';
+import { ChatSidePanel } from '../components/ChatSidePanel';
+
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -23,10 +25,9 @@ const Tab1: React.FC = () => {
 
   const [temporadaEnCurso, setTemporadaEnCurso] = useState<boolean>(false);
 
-  const anim = useTabVisibilityAnimation('up');
-
   const { jugadores, acciones, fetchJugadores, fetchAcciones } = useGame()
   const [showNotifPanel, setShowNotifPanel] = useState(false);
+  const [showChatPanel, setShowChatPanel] = useState(false);
 
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
@@ -74,10 +75,10 @@ const Tab1: React.FC = () => {
   return (
     <IonPage>
 
-      <IonHeader >
+      <IonHeader>
         <IonToolbar >
-          <IonButton slot='start' color={'background'} >
-            <IonIcon slot='' size={''} icon={barChart}></IonIcon>
+          <IonButton slot='start' color={'background'} onClick={() => setShowChatPanel(true)}>
+            <IonIcon slot='' size={''} icon={chatbox}></IonIcon>
           </IonButton>
           <IonTitle className=''>Home</IonTitle>
           <NotificationButton slot="end" onClick={() => setShowNotifPanel(true)} />
@@ -288,6 +289,8 @@ const Tab1: React.FC = () => {
           isOpen={showNotifPanel}
           onClose={() => setShowNotifPanel(false)}
         />
+        <ChatSidePanel isOpen={showChatPanel} onClose={() => setShowChatPanel(false)} />
+
 
       </IonContent>
     </IonPage>

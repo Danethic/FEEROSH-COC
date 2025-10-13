@@ -9,8 +9,10 @@ import {
   IonLabel,
   IonText,
   IonButton,
+  IonIcon,
 } from "@ionic/react";
 import { useNotifications } from "../contexts/notificationscontext";
+import { close, eyeOff } from "ionicons/icons";
 
 import '../theme/global.css'
 
@@ -20,7 +22,7 @@ interface Props {
 }
 
 export const NotificationsPanel: React.FC<Props> = ({ isOpen, onClose }) => {
-  const { notifications, markAllAsRead, clearNotifications } = useNotifications();
+  const { notifications, markAllAsRead } = useNotifications();
 
   return (
     <IonModal
@@ -29,7 +31,7 @@ export const NotificationsPanel: React.FC<Props> = ({ isOpen, onClose }) => {
       id="notifications-modal"
       className="notifications-modal"
       slot="end"
-      backdropDismiss={true}
+      backdropDismiss={false}
     >
       <IonHeader>
         <IonToolbar>
@@ -37,10 +39,19 @@ export const NotificationsPanel: React.FC<Props> = ({ isOpen, onClose }) => {
           <IonButton
             slot="end"
             fill="clear"
-            onClick={clearNotifications}
+            onClick={onClose}
             color="danger"
           >
-            Limpiar
+            <IonIcon size="" slot="" icon={close}></IonIcon>
+          </IonButton>
+
+          <IonButton
+            slot="start"
+            fill="clear"
+            onClick={markAllAsRead}
+            color="background"
+          >
+            <IonIcon size="" slot="" icon={eyeOff}></IonIcon>
           </IonButton>
         </IonToolbar>
       </IonHeader>
