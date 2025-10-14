@@ -38,39 +38,29 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
 
     return (
         <IonContent className="chatbox">
+
+            <div className="messages-container">
+                <IonSegmentContent id="global">
+                    <IonList className="messages">
+                        {globalMessages.map((m) => (
+                            <IonItem key={m.id} lines="none" color="none">
+                                <IonAvatar slot="start">
+                                    <img src={users.find((u) => u.address === m.from)?.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
+                                </IonAvatar>
+                                <IonLabel className="ion-text-wrap">
+                                    <h3>{users.find((u) => u.address === m.from)?.username || shortenAddress(m.from)}</h3>
+                                    <p className="minitittle">{m.timestamp}</p>
+                                    <p>{m.content}</p>
+                                </IonLabel>
+                            </IonItem>
+                        ))}
+                    </IonList>
+                </IonSegmentContent>
+            </div>
             <IonSegment mode="ios" onIonChange={(e) => setTab(e.detail.value as 'global' | 'team')}>
                 <IonSegmentButton value="global"><IonLabel>Global</IonLabel></IonSegmentButton>
                 <IonSegmentButton value="team"><IonLabel>Equipo</IonLabel></IonSegmentButton>
             </IonSegment>
-            <IonSegmentContent id="global">
-                <IonList className="messages">
-                    {globalMessages.map((m) => (
-                        <IonItem key={m.id} lines="none" color="none">
-                            <IonAvatar slot="start">
-                                <img src={users.find((u) => u.address === m.from)?.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
-                            </IonAvatar>
-                            <IonLabel className="ion-text-wrap">
-                                <h3>{users.find((u) => u.address === m.from)?.username || shortenAddress(m.from)}</h3>
-                                <p>{m.content}</p>
-                            </IonLabel>
-                        </IonItem>
-                    ))}
-                </IonList>
-            </IonSegmentContent>
-
-            {/* menú horizontal de chats privados */}
-            <div className="private-bar">
-                {privateChats.map((addr) => {
-                    const user = users.find((u) => u.address === addr);
-                    return (
-                        <IonButton key={addr} fill="clear" onClick={() => handleSelectUser(addr)}>
-                            <IonAvatar>
-                                <img src={user?.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
-                            </IonAvatar>
-                        </IonButton>
-                    );
-                })}
-            </div>
 
             <IonGrid className="chat-input">
                 <IonRow>
@@ -89,6 +79,19 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
                     </IonCol>
                 </IonRow>
             </IonGrid>
+            {/* menú horizontal de chats privados */}
+            <div className="private-bar">
+                {privateChats.map((addr) => {
+                    const user = users.find((u) => u.address === addr);
+                    return (
+                        <IonButton key={addr} fill="clear" onClick={() => handleSelectUser(addr)}>
+                            <IonAvatar>
+                                <img src={user?.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
+                            </IonAvatar>
+                        </IonButton>
+                    );
+                })}
+            </div>
         </IonContent >
     );
 };

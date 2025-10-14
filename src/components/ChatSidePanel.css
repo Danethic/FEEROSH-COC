@@ -18,10 +18,11 @@ ion-modal#chat-side-panel ion-content {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    height: 100%;
 }
 
 .chat-lock {
+    position: absolute !important;
+    bottom: 0px;
     text-align: center;
     color: #ffd690;
     margin: 15% 10px 0 10px;

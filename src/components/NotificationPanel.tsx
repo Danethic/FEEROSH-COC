@@ -10,11 +10,12 @@ import {
   IonText,
   IonButton,
   IonIcon,
+  createAnimation
 } from "@ionic/react";
 import { useNotifications } from "../contexts/notificationscontext";
 import { close, eyeOff } from "ionicons/icons";
 
-import '../theme/global.css'
+import './NotificationPanel.css'
 
 interface Props {
   isOpen: boolean;
@@ -24,13 +25,39 @@ interface Props {
 export const NotificationsPanel: React.FC<Props> = ({ isOpen, onClose }) => {
   const { notifications, markAllAsRead } = useNotifications();
 
+  const enterAnimation = (baseEl: HTMLElement) => {
+    const root = baseEl.shadowRoot;
+
+    const backdropAnimation = createAnimation()
+      .addElement(root?.querySelector('ion-backdrop')!)
+      .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+    const wrapperAnimation = createAnimation()
+      .addElement(root?.querySelector('.modal-wrapper')!)
+      .keyframes([
+        { offset: 0, opacity: '0', transform: 'translateX(100%)' },
+        { offset: 1, opacity: '1', transform: 'translateX(0)' },
+      ]);
+
+    return createAnimation()
+      .addElement(baseEl)
+      .easing('ease-out')
+      .duration(400)
+      .addAnimation([backdropAnimation, wrapperAnimation]);
+  };
+
+  const leaveAnimation = (baseEl: HTMLElement) => {
+    return enterAnimation(baseEl).direction('reverse');
+  };
+
+
   return (
     <IonModal
+      id="notifications-modal"
       isOpen={isOpen}
       onDidDismiss={onClose}
-      id="notifications-modal"
-      className="notifications-modal"
-      slot="end"
+      enterAnimation={enterAnimation}
+      leaveAnimation={leaveAnimation}
       backdropDismiss={false}
     >
       <IonHeader>
@@ -56,7 +83,7 @@ export const NotificationsPanel: React.FC<Props> = ({ isOpen, onClose }) => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
+      <IonContent className="notification-panel-content">
         <IonList>
           {notifications.length === 0 ? (
             <IonItem lines="none">

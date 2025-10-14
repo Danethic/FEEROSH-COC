@@ -62,7 +62,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 };
                 setMessages((prev) => [...prev, mock]);
             }
-        }, 4000);
+        }, 1000);
         return () => clearInterval(interval);
     }, [users]);
 

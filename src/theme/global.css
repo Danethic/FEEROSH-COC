@@ -571,7 +571,7 @@ ion-modal#nft-modal ion-content {
 
 }
 
-.tab2 {
+.tab3 {
     .t2 {
         margin: 15px !important;
     }
@@ -688,50 +688,7 @@ ion-modal#nft-modal ion-content {
     --detail-icon-opacity: 1;
 }
 
-ion-modal#notifications-modal {
-    --background: #5F220C !important;
-    --height: 60vh;
-    --max-width: 700px;
-    padding: 15px;
-    --border-radius: 15px;
-}
 
-ion-modal#notifications-modal::part(content) {
-    width: 340px;
-    max-width: 92vw;
-    --background: #2b1a10;
-    color: #ffd690;
-    --box-shadow: -4px 0 16px rgba(255, 214, 144, 0.12);
-}
-
-ion-modal#notifications-modal ion-list {
-    background: none;
-    color: #ffd690;
-}
-
-ion-modal#notifications-modal ion-item {
-    --background: none;
-    color: #ffd690;
-    border-bottom: 1px solid rgba(255, 214, 144, 0.06);
-
-    ion-text {
-        color: var(--ion-color-secondary);
-    }
-}
-
-ion-modal#notifications-modal ion-content {
-    --background: #5F220C;
-    color: #ffd690;
-    --border: none !important;
-}
-
-ion-modal#notifications-modal ion-badge {
-    --background: #ff3b30;
-    --color: #fff;
-    font-size: 0.6rem;
-    padding: 2px 6px;
-    border-radius: 8px;
-}
 
 ion-content.game {
     --background: #000000 !important;

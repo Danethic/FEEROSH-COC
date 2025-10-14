@@ -101,6 +101,7 @@ const Tab3: React.FC = () => {
   };
 
   // Estados locales
+  const [segmentValue, setSegmentValue] = useState<'nfts' | 'ajustes'>('nfts');
   const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "Español");
   const [moneda, setMoneda] = useState(localStorage.getItem("moneda") || "USD");
   const [biometria, setBiometria] = useState(localStorage.getItem("biometria") === "true");
@@ -184,8 +185,8 @@ const Tab3: React.FC = () => {
           </>) : (
           <>
             <IonToolbar >
-              <IonButton slot='start' color={'background'} >
-                <IonIcon slot='' size={''} icon={chatbox}></IonIcon>
+              <IonButton slot='start' disabled color={'background'} >
+                <IonIcon slot='' size={''} icon={barChart} ></IonIcon>
               </IonButton>
               <IonTitle className=''>Profile</IonTitle>
               <IonButton slot='end' disabled color={'background'}>
@@ -196,7 +197,7 @@ const Tab3: React.FC = () => {
         )}
 
       </IonHeader>
-      <IonContent className="tab2">
+      <IonContent className="tab3">
         <div className="base">
           {address ? (
             <>
@@ -218,7 +219,7 @@ const Tab3: React.FC = () => {
                 </div>
 
                 <div className="t2 prof-segmets">
-                  <IonSegment mode="ios" value={'nfts'}>
+                  <IonSegment mode="ios" onIonChange={(e) => setSegmentValue(e.detail.value as 'nfts' | 'ajustes')}>
                     <IonSegmentButton value="nfts" contentId="nfts">
                       <IonLabel>NFTs</IonLabel>
                     </IonSegmentButton>
@@ -227,8 +228,8 @@ const Tab3: React.FC = () => {
                     </IonSegmentButton>
                   </IonSegment>
 
-                  <IonSegmentView>
-                    <IonSegmentContent className="segment-container" id="nfts">
+                  <IonSegmentView defaultValue={segmentValue}>
+                    <IonSegmentContent className="segment-container" defaultValue={'nfts'} id="nfts">
                       <IonGrid>
                         <IonRow>
                           {[1, 2, 3, 4, 5, 6].map((n) => (
@@ -245,7 +246,7 @@ const Tab3: React.FC = () => {
                     </IonSegmentContent>
 
 
-                    <IonSegmentContent className="segment-container" id="ajustes">
+                    <IonSegmentContent className="segment-container" defaultValue={'ajustes'} id="ajustes">
                       <IonList lines="none">
                         <IonItem>
                           <IonIcon icon={notifications} slot="start" />
