@@ -46,7 +46,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         // simulación de mensajes del servidor
         let types
         const interval = setInterval(() => {
-            if (Math.random() < 0.08) {
+            if (Math.random() < 0.20) {
                 if (Math.random() < 0.5) {
                     types = 'global'
                 } else {

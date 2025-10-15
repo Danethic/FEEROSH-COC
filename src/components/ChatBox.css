@@ -1,6 +1,6 @@
-ion-content.chatbox {
+.chatbox {
     color: #ffd690;
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     --height: auto;
     width: 100%;
@@ -8,12 +8,14 @@ ion-content.chatbox {
     bottom: 0;
     margin: 0 auto;
     padding: 0;
+    --box-shadow: 0 15px 20px rgba(255, 214, 144, 0.1);
 
 }
 
 .chatbox ion-segment {
     --background: #5F220C;
     border-bottom: 1px solid rgba(255, 214, 144, 0.1);
+
 }
 
 .messages {
@@ -28,22 +30,35 @@ ion-content.chatbox {
     flex-direction: row;
     justify-content: start;
     overflow-x: auto;
-    height: 6%;
-    background: #4a2815;
+    --height: ;
+    --background: #5F220C;
     border-top: 1px solid rgba(255, 214, 144, 0.1);
 }
 
 .chat-input {
-    padding: 4px;
-    background: #4a2815;
+    padding: 0px;
+    margin: 0px !important;
+    background: #3a1e0e;
     border-top: 1px solid rgba(255, 214, 144, 0.15);
+    align-items: center;
+
+    textarea {
+        align-content: center;
+        text-align: left !important;
+        margin: 0 10px !important;
+    }
+
+    ion-col {
+        align-self: center;
+    }
 }
 
 .messages-container {
-    height: 60% !important;
+    height: 80% !important;
     display: flex;
     flex-direction: column-reverse;
     overflow: scroll;
+
 }
 
 .minitittle {

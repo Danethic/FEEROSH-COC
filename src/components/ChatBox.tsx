@@ -4,10 +4,12 @@ import {
     IonList, IonItem, IonAvatar, IonButton, IonIcon,
     IonTextarea, IonContent, IonGrid, IonRow, IonCol, IonSegmentView,
     IonSegmentContent
-} from "@ionic/react";
+}
+    from "@ionic/react";
 import { send, people, personCircle } from "ionicons/icons";
 import { useChat } from "../contexts/chatcontext";
 import { shortenAddress } from "../utils/format";
+import { motion, easeOut } from 'framer-motion'
 
 import './ChatBox.css'
 
@@ -20,6 +22,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
     const [tab, setTab] = useState<"global" | "team" | "private">("global");
     const [recipient, setRecipient] = useState<string | null>(null);
     const [input, setInput] = useState("");
+
 
     const globalMessages = getMessages(tab, recipient || undefined);
     const privateChats = getPrivateChats();
@@ -40,19 +43,26 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
         <IonContent className="chatbox">
 
             <div className="messages-container">
-                <IonSegmentContent id="global">
+                <IonSegmentContent id="global" >
                     <IonList className="messages">
                         {globalMessages.map((m) => (
-                            <IonItem key={m.id} lines="none" color="none">
-                                <IonAvatar slot="start">
-                                    <img src={users.find((u) => u.address === m.from)?.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
-                                </IonAvatar>
-                                <IonLabel className="ion-text-wrap">
-                                    <h3>{users.find((u) => u.address === m.from)?.username || shortenAddress(m.from)}</h3>
-                                    <p className="minitittle">{m.timestamp}</p>
-                                    <p>{m.content}</p>
-                                </IonLabel>
-                            </IonItem>
+                            <motion.div
+                                key={m.id}
+                                initial={{ y: 10, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                exit={{ y: -10 }}
+                                transition={{ duration: 0.4, ease: easeOut }}>
+                                <IonItem className="new-message" lines="none" color="none">
+                                    <IonAvatar slot="start">
+                                        <img src={users.find((u) => u.address === m.from)?.profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} />
+                                    </IonAvatar>
+                                    <IonLabel className="ion-text-wrap">
+                                        <h3>{users.find((u) => u.address === m.from)?.username || shortenAddress(m.from)}</h3>
+                                        <p className="minitittle">{m.timestamp}</p>
+                                        <p>{m.content}</p>
+                                    </IonLabel>
+                                </IonItem>
+                            </motion.div>
                         ))}
                     </IonList>
                 </IonSegmentContent>
@@ -68,6 +78,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
                         <IonTextarea
                             placeholder="Escribe un mensaje..."
                             autoGrow
+                            inputMode="text"
                             value={input}
                             onIonInput={(e) => setInput(e.detail.value!)}
                         />
