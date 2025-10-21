@@ -1,11 +1,11 @@
 import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonToolbar } from "@ionic/react";
-import { arrowBackOutline, menu } from "ionicons/icons";
+import { arrowBackOutline, menu, help, bulb } from "ionicons/icons";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
 import { ChatBox } from "../components/ChatBox";
-import { Keyboard, KeyboardResize } from "@capacitor/keyboard";
+import { FloatingButton } from "../components/FloatingButton";
 
 const Game: React.FC = () => {
     const history = useHistory();
@@ -91,6 +91,21 @@ const Game: React.FC = () => {
                         </IonCard>
                     </div>
                 </div>
+                <FloatingButton
+                    icon={help}
+                    side="left"
+                    offset="25%"
+                    color="var(--ion-color-secondary)"
+                    background="var(--ion-color-primary)"
+                    border="2px solid var(--ion-color-secondary)"
+                />
+                <FloatingButton
+                    icon={bulb}
+                    side="right"
+                    offset="50%"
+                    color="var(--ion-color-primary)"
+                    background="var(--ion-color-secondary)"
+                />
             </IonContent>
         </IonPage>
     );

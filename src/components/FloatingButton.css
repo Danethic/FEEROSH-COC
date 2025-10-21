@@ -1,0 +1,41 @@
+.floating-btn {
+    position: fixed;
+    z-index: 9999;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* alineación lateral */
+.floating-btn.right {
+    right: 0;
+    transform: translateX(20%);
+}
+
+.floating-btn.left {
+    left: 0;
+    transform: translateX(-20%);
+}
+
+/* efecto hover/touch */
+.floating-btn.right:hover,
+.floating-btn.right:active {
+    transform: translateX(0%) scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.floating-btn.left:hover,
+.floating-btn.left:active {
+    transform: translateX(0%) scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.floating-icon {
+    font-size: 1.5rem;
+    pointer-events: none;
+}

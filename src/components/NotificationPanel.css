@@ -3,9 +3,9 @@ ion-modal#notifications-modal {
     --width: 85vw !important;
     --height: 100%;
     --border-radius: 0;
-    --box-shadow: 4px 0 16px rgba(255, 214, 144, 0.15);
     --backdrop-opacity: 0.5;
     justify-content: right;
+    --border-radius: 15px 0 0 15px;
 }
 
 ion-modal#notifications-modal ion-content {
