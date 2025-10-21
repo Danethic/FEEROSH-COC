@@ -102,7 +102,7 @@ const Tab1: React.FC = () => {
                       <h3 className='tittle'>$150,00</h3>
                     </div>
                     <IonButton className='bmain' onClick={() => history.push('/game')} >
-                      let's Play
+                      Let's Play
                     </IonButton>
                   </div>
                   <div className='t3 ann'>

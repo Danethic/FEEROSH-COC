@@ -266,7 +266,7 @@ const Tab3: React.FC = () => {
                               <IonLabel>Preferencias</IonLabel>
                             </IonItem>
                             <div className="ion-padding" slot="content">
-                              <IonItem>
+                              <IonItem >
                                 <IonLabel>Idioma</IonLabel>
                                 <IonSelect
                                   interface="popover"

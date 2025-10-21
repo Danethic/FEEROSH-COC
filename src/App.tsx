@@ -46,7 +46,7 @@ import './theme/global.css';
 import { fadeSlideAnimation } from './Animations/FadeSlide';
 
 setupIonicReact({
-  mode: 'md'
+  mode: 'ios'
 });
 
 const App: React.FC = () => (

@@ -62,6 +62,7 @@ export const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ isOpen, onClose })
             isOpen={isOpen}
             onDidDismiss={onClose}
             animated={true}
+            backdropDismiss={false}
             enterAnimation={enterAnimation}
             leaveAnimation={leaveAnimation}
         >
@@ -76,7 +77,7 @@ export const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ isOpen, onClose })
                 </IonToolbar>
             </IonHeader>
 
-            <IonContent className="chat-panel-content">
+            <div className="chat-panel-content">
                 {/* 🔒 Usuario no conectado */}
                 {!address && (
                     <div className="chat-lock">
@@ -113,7 +114,7 @@ export const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ isOpen, onClose })
                         <ChatBox />
                     </div>
                 )}*/}
-            </IonContent>
+            </div>
         </IonModal>
     );
 };

@@ -1,48 +1,50 @@
-import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
+import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonToolbar } from "@ionic/react";
 import { arrowBackOutline, menu } from "ionicons/icons";
 import { useHistory } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
-import { size } from "viem";
-
+import { ChatBox } from "../components/ChatBox";
+import { Keyboard, KeyboardResize } from "@capacitor/keyboard";
 
 const Game: React.FC = () => {
     const history = useHistory();
 
-    const { address, disconnect, connect } = useAuth();
-    const [username, setUsername] = useState(localStorage.getItem("username") || "Jugador");
-    const [profileImage, setProfileImage] = useState(localStorage.getItem("profileImage") || "");
+    const { address } = useAuth();
+    const [username] = useState(localStorage.getItem("username") || "Jugador");
+    const [profileImage] = useState(localStorage.getItem("profileImage") || "");
 
     const walletAddress = address ? shortenAddress(address) : 'no conectado';
 
     return (
         <IonPage>
+            <IonHeader>
+                <IonToolbar className="gameToolBar">
+                    <IonButton slot="start" className='backbutton' fill="clear" onClick={() => history.push('/tabs')}>
+                        <IonIcon color="secondary" slot='' size={''} icon={arrowBackOutline} />
+                    </IonButton>
+                    <div className="game-center-header">
+                        <IonAvatar slot="">
+                            <img
+                                src={profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                                alt="profile"
+                            />
+                        </IonAvatar>
+                        <IonText slot="">
+                            {username || 'UserName'}
+                            <p className="minitittle">{walletAddress}</p>
+                        </IonText>
+                    </div>
+
+                    <IonButton slot="end" className="backbutton" fill="clear" >
+                        <IonIcon color="secondary" slot='' size={''} icon={menu} />
+                    </IonButton>
+                </IonToolbar>
+            </IonHeader>
+
             <IonContent className="game">
                 <div className="content-game">
-                    <IonHeader>
-                        <IonToolbar>
-                            <IonButton slot="start" className='backbutton' fill="clear" onClick={() => history.push('/tabs')}>
-                                <IonIcon color="secondary" slot='' size={''} icon={arrowBackOutline} />
-                            </IonButton>
-                            <div className="game-center-header">
-                                <IonAvatar slot="">
-                                    <img
-                                        src={profileImage || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-                                        alt="profile"
-                                    />
-                                </IonAvatar>
-                                <IonText slot="">
-                                    {username || 'UserName'}
-                                    <p className="minitittle">{walletAddress}</p>
-                                </IonText>
-                            </div>
 
-                            <IonButton slot="end" className="backbutton" fill="clear" >
-                                <IonIcon color="secondary" slot='' size={''} icon={menu} />
-                            </IonButton>
-                        </IonToolbar>
-                    </IonHeader>
 
                     <IonCard className="global-energy">
                         <div className="team-logos-energy">
@@ -56,10 +58,10 @@ const Game: React.FC = () => {
                         </div>
                     </IonCard>
 
-
-
-
                     <div className="bottom-space">
+                        <div className="chatzone">
+                            <ChatBox className="game-chat" />
+                        </div>
                         <IonCard className="user-panel">
                             <IonCardHeader>
                                 <IonCardTitle className="subtitle">
@@ -86,7 +88,8 @@ const Game: React.FC = () => {
                                     </IonRow>
                                 </IonGrid>
                             </IonCardContent>
-                        </IonCard></div>
+                        </IonCard>
+                    </div>
                 </div>
             </IonContent>
         </IonPage>

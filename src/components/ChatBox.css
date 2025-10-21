@@ -1,28 +1,35 @@
 .chatbox {
-    color: #ffd690;
+    color: var(--ion-color-secondary);
     display: flex !important;
     flex-direction: column;
-    --height: auto;
+    justify-content: flex-end;
+    --height: 100%;
     width: 100%;
-    position: absolute;
     bottom: 0;
     margin: 0 auto;
     padding: 0;
     --box-shadow: 0 15px 20px rgba(255, 214, 144, 0.1);
-
+    overflow: hidden !important;
+    --background: transparent !important;
 }
 
 .chatbox ion-segment {
+    position: relative;
     --background: #5F220C;
     border-bottom: 1px solid rgba(255, 214, 144, 0.1);
+
+    ion-segment-button {
+        --indicator-color: var(--ion-color-primary);
+        --color: var(--ion-color-secondary);
+        --color-checked: #5F220C;
+    }
 
 }
 
 .messages {
-    flex: 1;
     overflow-y: auto;
-    background: #3a1e0e;
-
+    background: #3a1e0e00;
+    color: var(--ion-color-secondary) !important;
 }
 
 .private-bar {
@@ -30,26 +37,56 @@
     flex-direction: row;
     justify-content: start;
     overflow-x: auto;
-    --height: ;
-    --background: #5F220C;
+    --background: #5f220c00;
     border-top: 1px solid rgba(255, 214, 144, 0.1);
 }
 
-.chat-input {
-    padding: 0px;
-    margin: 0px !important;
-    background: #3a1e0e;
-    border-top: 1px solid rgba(255, 214, 144, 0.15);
+ion-grid.chat-input {
+    fill: none;
+    background: #3a1e0e49;
     align-items: center;
+    max-height: fit-content;
+    overflow-y: visible;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 15px;
 
-    textarea {
-        align-content: center;
-        text-align: left !important;
-        margin: 0 10px !important;
+    ion-textarea {
+
+        textarea {
+            display: flex;
+            text-align: left !important;
+            margin: 0px 10px !important;
+            padding: 5px 0 0 0 !important;
+            --width: 5vh;
+            --max-height: 7vh;
+            overflow-y: scroll !important;
+            overflow-x: hidden !important;
+            font-size: 0.8 !important;
+
+
+        }
+
+        .textarea-bottom {
+            margin: 0 !important;
+            padding: 0 !important;
+            border-color: antiquewhite !important;
+        }
     }
 
     ion-col {
-        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        max-height: 7vh;
+        overflow: hidden;
+
+        ion-button {
+            height: 100% !important;
+            min-height: 15px;
+        }
     }
 }
 
@@ -57,8 +94,7 @@
     height: 80% !important;
     display: flex;
     flex-direction: column-reverse;
-    overflow: scroll;
-
+    overflow: scroll !important;
 }
 
 .minitittle {

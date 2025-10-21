@@ -6,6 +6,7 @@ import { GameProvider } from './contexts/gamecontext';
 import { NotificationsProvider } from './contexts/notificationscontext';
 import { ChatProvider } from './contexts/chatcontext';
 
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(

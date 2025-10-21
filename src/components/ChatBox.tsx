@@ -1,23 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     IonSegment, IonSegmentButton, IonLabel,
     IonList, IonItem, IonAvatar, IonButton, IonIcon,
-    IonTextarea, IonContent, IonGrid, IonRow, IonCol, IonSegmentView,
+    IonTextarea, IonGrid, IonRow, IonCol,
     IonSegmentContent
 }
     from "@ionic/react";
-import { send, people, personCircle } from "ionicons/icons";
+import { send } from "ionicons/icons";
 import { useChat } from "../contexts/chatcontext";
 import { shortenAddress } from "../utils/format";
 import { motion, easeOut } from 'framer-motion'
+import { Keyboard, KeyboardResize } from "@capacitor/keyboard";
 
 import './ChatBox.css'
 
 interface ChatBoxProps {
     mode?: "full" | "compact";
+    className?: string;
 }
 
-export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
+export const ChatBox: React.FC<ChatBoxProps> = ({ className }) => {
+
+
+
+    useEffect(() => {
+        Keyboard.setResizeMode({ mode: KeyboardResize.None });
+    }, []);
     const { sendMessage, getMessages, users, getPrivateChats, markAsRead } = useChat();
     const [tab, setTab] = useState<"global" | "team" | "private">("global");
     const [recipient, setRecipient] = useState<string | null>(null);
@@ -40,7 +48,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
     };
 
     return (
-        <IonContent className="chatbox">
+        <div className={`chatbox ${className || ""}`}>
 
             <div className="messages-container">
                 <IonSegmentContent id="global" >
@@ -58,7 +66,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
                                     </IonAvatar>
                                     <IonLabel className="ion-text-wrap">
                                         <h3>{users.find((u) => u.address === m.from)?.username || shortenAddress(m.from)}</h3>
-                                        <p className="minitittle">{m.timestamp}</p>
+                                        <p className="minitittle">{new Date(m.timestamp).toLocaleTimeString()}</p>
                                         <p>{m.content}</p>
                                     </IonLabel>
                                 </IonItem>
@@ -74,23 +82,24 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
 
             <IonGrid className="chat-input">
                 <IonRow>
-                    <IonCol size="10">
+                    <IonCol size="9" sizeSm="10">
                         <IonTextarea
                             placeholder="Escribe un mensaje..."
-                            autoGrow
+                            counter={true}
+                            maxlength={250}
                             inputMode="text"
                             value={input}
                             onIonInput={(e) => setInput(e.detail.value!)}
                         />
                     </IonCol>
-                    <IonCol size="2">
+                    <IonCol size="3" sizeSm="2">
                         <IonButton expand="block" onClick={handleSend}>
                             <IonIcon icon={send} />
                         </IonButton>
                     </IonCol>
                 </IonRow>
             </IonGrid>
-            {/* menú horizontal de chats privados */}
+            {/* menú horizontal de chats privados
             <div className="private-bar">
                 {privateChats.map((addr) => {
                     const user = users.find((u) => u.address === addr);
@@ -102,7 +111,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ mode = "full" }) => {
                         </IonButton>
                     );
                 })}
-            </div>
-        </IonContent >
+            </div> */}
+        </div >
     );
 };
