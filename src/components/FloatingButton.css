@@ -9,6 +9,11 @@
     justify-content: center;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    pointer-events: painted;
+}
+
+.floating-btn.no-hover {
+    pointer-events: none;
 }
 
 /* alineación lateral */
@@ -22,17 +27,23 @@
     transform: translateX(-20%);
 }
 
-/* efecto hover/touch */
-.floating-btn.right:hover,
-.floating-btn.right:active {
-    transform: translateX(0%) scale(1.05);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+@media (hover: hover) and (pointer: fine) {
+
+    /* efecto hover/touch */
+    .floating-btn.right:hover,
+    .floating-btn.left:hover {
+        transform: translateX(0%) scale(1.05);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
 }
 
-.floating-btn.left:hover,
-.floating-btn.left:active {
-    transform: translateX(0%) scale(1.05);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+@media (hover: none) and (pointer:coarse) {
+
+    .floating-btn.right:active,
+    .floating-btn.left:active {
+        transform: translateX(0%) scale(1.05);
+        box-shadow: 0 0px 20px var(--ion-color-secondary);
+    }
 }
 
 .floating-icon {

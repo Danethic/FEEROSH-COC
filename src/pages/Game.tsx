@@ -1,5 +1,5 @@
-import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonToolbar } from "@ionic/react";
-import { arrowBackOutline, menu, help, bulb } from "ionicons/icons";
+import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonSegment, IonSegmentButton, IonLabel, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonToolbar } from "@ionic/react";
+import { arrowBackOutline, menu, help, bulb, chatbox, list, clipboard } from "ionicons/icons";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/authcontext";
@@ -15,6 +15,31 @@ const Game: React.FC = () => {
     const [profileImage] = useState(localStorage.getItem("profileImage") || "");
 
     const walletAddress = address ? shortenAddress(address) : 'no conectado';
+
+    const [activeView, setActiveView] = useState<'chat' | 'log' | 'tasks'>('chat');
+
+    const renderActiveView = () => {
+        switch (activeView) {
+            case "chat":
+                return <ChatBox className="game-chat" />;
+            case "log":
+                return (
+                    <div className="placeholder-view">
+                        <IonText>📜 Registro de actividades (próximamente)</IonText>
+                    </div>
+                );
+            case "tasks":
+                return (
+                    <div className="placeholder-view">
+                        <IonText>🧩 Tareas del juego (próximamente)</IonText>
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
+
 
     return (
         <IonPage>
@@ -59,9 +84,28 @@ const Game: React.FC = () => {
                     </IonCard>
 
                     <div className="bottom-space">
+
+                        {/* 🔸 Zona dinámica (reemplaza al chat fijo) */}
                         <div className="chatzone">
-                            <ChatBox className="game-chat" />
+                            {renderActiveView()}
                         </div>
+
+                        {/* 🔸 Botones de cambio de vista */}
+                        <IonSegment
+                            value={activeView}
+                            onIonChange={(e) => setActiveView(e.detail.value as 'chat' | 'tasks' | 'log')}
+                            mode="ios"
+                            className="view-toggle-segment">
+                            <IonSegmentButton value="chat">
+                                <IonIcon icon={chatbox} size="small" />
+                            </IonSegmentButton>
+                            <IonSegmentButton value="log">
+                                <IonIcon icon={list} size="small" />
+                            </IonSegmentButton>
+                            <IonSegmentButton value="tasks">
+                                <IonIcon icon={clipboard} size="small" />
+                            </IonSegmentButton>
+                        </IonSegment>
                         <IonCard className="user-panel">
                             <IonCardHeader>
                                 <IonCardTitle className="subtitle">

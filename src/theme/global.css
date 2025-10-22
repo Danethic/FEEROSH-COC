@@ -39,7 +39,7 @@ ion-toolbar {
     --border-style: none !important;
     --border-width: 0 !important;
     --color: var(primary);
-    --min-height: 5vh;
+    --min-height: 5dvh;
 
     ion-button {
         --box-shadow: none !important;
@@ -146,7 +146,7 @@ ion-row {
 
 ion-modal#profile-modal {
     --background: #5F220C !important;
-    --height: 60vh;
+    --height: 60dvh;
     --max-width: 700px;
     padding: 15px;
     --border-radius: 15px;
@@ -194,7 +194,7 @@ ion-modal#profile-modal ion-content {
 
 ion-modal#nft-modal {
     --background: #5F220C !important;
-    --height: 60vh;
+    --height: 60dvh;
     --max-width: 700px;
     padding: 15px;
     --border-radius: 15px;
@@ -279,7 +279,7 @@ ion-modal#nft-modal ion-content {
 }
 
 .login {
-    width: 50vw !important;
+    width: 50dvw !important;
 
     .t2 {
         padding: 20px 5px;
@@ -355,7 +355,7 @@ ion-modal#nft-modal ion-content {
     justify-content: center;
     align-self: center;
     justify-self: center;
-    height: 100vh !important;
+    height: 100dvh !important;
     margin: 0 !important;
     padding: 0 !important;
 
@@ -577,7 +577,7 @@ ion-modal#nft-modal ion-content {
 .col3 {
 
     .t2 {
-        min-height: 50vh !important;
+        min-height: 50dvh !important;
     }
 
     h2 {
@@ -723,7 +723,7 @@ ion-modal#nft-modal ion-content {
 }
 
 
-
+/* { Game Page} */
 ion-content.game {
     --background: #000000 !important;
     overflow-y: auto;
@@ -731,7 +731,7 @@ ion-content.game {
 }
 
 .bottom-space {
-    width: 100vw;
+    width: 100dvw;
     height: min-content;
     position: absolute;
     bottom: 0;
@@ -788,7 +788,7 @@ ion-toolbar.gameToolBar {
 .content-game {
     position: relative;
     display: block;
-    width: 100vw !important;
+    width: 100dvw !important;
     height: 100%;
     background-image: url('../pngs/gbg.png');
     background-repeat: no-repeat;
@@ -813,6 +813,8 @@ ion-card.user-panel {
     border: 2px solid var(--ion-color-primary);
     border-radius: 15px;
     z-index: 2;
+
+    margin-top: 5px;
 
     width: 80%;
     max-width: 400px;
@@ -839,7 +841,7 @@ ion-card.user-panel {
             .energy-bar {
                 justify-self: center;
                 position: relative;
-                width: 70vw;
+                width: 70dvw;
                 max-width: 95%;
                 height: 20px;
                 background: rgba(0, 0, 0, 0.0);
@@ -983,7 +985,7 @@ ion-card.user-panel {
     display: flex;
     z-index: 6;
     width: 80%;
-    max-height: 50vh;
+    max-height: 50dvh;
     background: none;
     overflow: visible;
     align-self: center;
@@ -997,7 +999,7 @@ ion-card.user-panel {
     background-color: #5f220c33;
     box-sizing: border-box;
     box-shadow: 2px 2px 2px #5f220c33 !important;
-    height: 50vh;
+    height: 50dvh;
 
     ion-segment,
     ion-segment-button {
@@ -1038,7 +1040,7 @@ ion-card.user-panel {
             font-size: small;
             fill: none;
             overflow-y: scroll;
-            max-height: 10vh;
+            max-height: 10dvh;
         }
 
     }
@@ -1054,7 +1056,7 @@ ion-card.user-panel {
 
             .minitittle {
                 font-size: xx-small;
-                margin: 0.1rem !important;
+                margin: 0.1rem 0 !important;
             }
 
             p {
@@ -1072,4 +1074,23 @@ ion-card.user-panel {
         height: 70% !important;
     }
 
+}
+
+ion-segment.view-toggle-segment {
+
+    position: relative;
+    align-self: center;
+    justify-self: center;
+
+    width: fit-content;
+    margin-top: 5px;
+
+    --background: #5F220C;
+    color: var(--ion-color-secondary);
+
+    ion-segment-button {
+        --indicator-color: var(--ion-color-primary);
+        --color: var(--ion-color-secondary);
+        --color-checked: #5F220C;
+    }
 }

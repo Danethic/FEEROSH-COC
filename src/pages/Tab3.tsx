@@ -219,7 +219,7 @@ const Tab3: React.FC = () => {
                 </div>
 
                 <div className="t2 prof-segmets">
-                  <IonSegment mode="ios" onIonChange={(e) => setSegmentValue(e.detail.value as 'nfts' | 'ajustes')}>
+                  <IonSegment value={segmentValue} mode="ios" onIonChange={(e) => setSegmentValue(e.detail.value as 'nfts' | 'ajustes')}>
                     <IonSegmentButton value="nfts" contentId="nfts">
                       <IonLabel>NFTs</IonLabel>
                     </IonSegmentButton>
@@ -421,7 +421,7 @@ const Tab3: React.FC = () => {
                   maxlength={15}
                   onIonChange={(e) => {
                     const value = e.detail.value || "";
-                    if (value.length <= 12) setUsername(value);
+                    if (value.length <= 15) setUsername(value);
                   }}
                   placeholder="Tu nombre de usuario"
                 />
@@ -437,43 +437,43 @@ const Tab3: React.FC = () => {
                 </IonButton>
               </IonRow>
             </IonGrid>
+          </IonContent>
+        </IonModal>
 
-            {/* Modal secundario para elegir NFT */}
-            <IonModal id="nft-modal" isOpen={showNFTPicker} onDidDismiss={() => setShowNFTPicker(false)}>
-              <IonHeader>
-                <IonToolbar>
-                  <IonTitle>Seleccionar NFT</IonTitle>
-                </IonToolbar>
-              </IonHeader>
-              <IonContent className="ion-padding">
-                <IonGrid>
-                  <IonRow>
-                    {mockNFTs.map((nft) => (
-                      <IonCol
-                        size="6"
-                        key={nft.id}
-                        onClick={() => handleNFTSelect(nft)}
-                        style={{
-                          textAlign: "center",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <img
-                          src={nft.image}
-                          alt={nft.name}
-                          style={{
-                            borderRadius: "12px",
-                            width: "100%",
-                            border: "2px solid #ffd690",
-                          }}
-                        />
-                        <IonLabel>{nft.name}</IonLabel>
-                      </IonCol>
-                    ))}
-                  </IonRow>
-                </IonGrid>
-              </IonContent>
-            </IonModal>
+        {/* Modal secundario para elegir NFT */}
+        <IonModal id="nft-modal" isOpen={showNFTPicker} onDidDismiss={() => setShowNFTPicker(false)}>
+          <IonHeader>
+            <IonToolbar>
+              <IonTitle>Seleccionar NFT</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <IonContent className="ion-padding">
+            <IonGrid>
+              <IonRow>
+                {mockNFTs.map((nft) => (
+                  <IonCol
+                    size="6"
+                    key={nft.id}
+                    onClick={() => handleNFTSelect(nft)}
+                    style={{
+                      textAlign: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <img
+                      src={nft.image}
+                      alt={nft.name}
+                      style={{
+                        borderRadius: "12px",
+                        width: "100%",
+                        border: "2px solid #ffd690",
+                      }}
+                    />
+                    <IonLabel>{nft.name}</IonLabel>
+                  </IonCol>
+                ))}
+              </IonRow>
+            </IonGrid>
           </IonContent>
         </IonModal>
 
