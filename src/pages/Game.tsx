@@ -1,4 +1,22 @@
-import { IonPage, IonContent, IonButton, IonAvatar, IonIcon, IonSegment, IonSegmentButton, IonLabel, IonText, IonCard, IonCardTitle, IonCardContent, IonCardHeader, IonGrid, IonRow, IonCol, IonHeader, IonToolbar } from "@ionic/react";
+import {
+    IonPage,
+    IonContent,
+    IonButton,
+    IonAvatar,
+    IonIcon,
+    IonSegment,
+    IonSegmentButton,
+    IonText,
+    IonCard,
+    IonCardTitle,
+    IonCardContent,
+    IonCardHeader,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonHeader,
+    IonToolbar
+} from "@ionic/react";
 import { arrowBackOutline, menu, help, bulb, chatbox, list, clipboard } from "ionicons/icons";
 import { useHistory } from "react-router";
 import { useState, useEffect } from "react";
@@ -6,6 +24,9 @@ import { useAuth } from "../contexts/authcontext";
 import { shortenAddress } from "../utils/format";
 import { ChatBox } from "../components/ChatBox";
 import { FloatingButton } from "../components/FloatingButton";
+import { GameActivity } from "../components/GameActivity";
+import { Tasks } from "../components/Tasks";
+import { useGame } from "../contexts/gamecontext";
 
 const Game: React.FC = () => {
     const history = useHistory();
@@ -13,32 +34,23 @@ const Game: React.FC = () => {
     const { address } = useAuth();
     const [username] = useState(localStorage.getItem("username") || "Jugador");
     const [profileImage] = useState(localStorage.getItem("profileImage") || "");
-
+    const { fetchJugadores, fetchAcciones } = useGame();
     const walletAddress = address ? shortenAddress(address) : 'no conectado';
 
-    const [activeView, setActiveView] = useState<'chat' | 'log' | 'tasks'>('chat');
+    const [activeView, setActiveView] = useState<'chat' | 'activity' | 'tasks'>('chat');
 
     const renderActiveView = () => {
         switch (activeView) {
             case "chat":
                 return <ChatBox className="game-chat" />;
-            case "log":
-                return (
-                    <div className="placeholder-view">
-                        <IonText>📜 Registro de actividades (próximamente)</IonText>
-                    </div>
-                );
+            case "activity":
+                return <GameActivity />;
             case "tasks":
-                return (
-                    <div className="placeholder-view">
-                        <IonText>🧩 Tareas del juego (próximamente)</IonText>
-                    </div>
-                );
+                return <Tasks />;
             default:
                 return null;
         }
     };
-
 
 
     return (
@@ -93,13 +105,13 @@ const Game: React.FC = () => {
                         {/* 🔸 Botones de cambio de vista */}
                         <IonSegment
                             value={activeView}
-                            onIonChange={(e) => setActiveView(e.detail.value as 'chat' | 'tasks' | 'log')}
+                            onIonChange={(e) => setActiveView(e.detail.value as 'chat' | 'tasks' | 'activity')}
                             mode="ios"
                             className="view-toggle-segment">
                             <IonSegmentButton value="chat">
                                 <IonIcon icon={chatbox} size="small" />
                             </IonSegmentButton>
-                            <IonSegmentButton value="log">
+                            <IonSegmentButton value="activity">
                                 <IonIcon icon={list} size="small" />
                             </IonSegmentButton>
                             <IonSegmentButton value="tasks">

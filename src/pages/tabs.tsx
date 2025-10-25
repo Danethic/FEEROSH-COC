@@ -1,7 +1,6 @@
-import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, IonRouterLink } from '@ionic/react';
-import { Redirect, Route,} from 'react-router-dom';
-import { home, person, settings, storefront } from 'ionicons/icons';
-import { createAnimation } from '@ionic/react';
+import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon } from '@ionic/react';
+import { Redirect, Route, } from 'react-router-dom';
+import { home, person, storefront } from 'ionicons/icons';
 
 import { fadeSlideAnimation } from '../Animations/FadeSlide';
 
@@ -9,7 +8,6 @@ import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 
-import { useRef } from 'react';
 
 const Tabs: React.FC = () => {
 

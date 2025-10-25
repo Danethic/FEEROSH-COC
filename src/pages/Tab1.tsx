@@ -11,7 +11,6 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { useTabVisibilityAnimation } from '../hooks/useEnterAnimation';
 import { shortenAddress } from '../utils/format';
 
 import guepardo from '../svgs/guepardo.svg'
@@ -101,7 +100,7 @@ const Tab1: React.FC = () => {
                       <IonText className='subtittle '> Premio por jugador</IonText>
                       <h3 className='tittle'>$150,00</h3>
                     </div>
-                    <IonButton className='bmain' onClick={() => history.push('/game')} >
+                    <IonButton className='bmain' routerLink='/game' >
                       Let's Play
                     </IonButton>
                   </div>

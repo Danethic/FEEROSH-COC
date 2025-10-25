@@ -36,7 +36,7 @@ const ChatContext = createContext<ChatContextType | undefined>(undefined);
 export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const { address } = useAuth();
     const [messages, setMessages] = useState<ChatMessage[]>([]);
-    const [users, setUsers] = useState<ChatUser[]>([
+    const [users] = useState<ChatUser[]>([
         { address: "0x123", username: "Fiera01", team: "guepardo", isPlayer: true, profileImage: "/assets/nfts/fiera1.png", online: true },
         { address: "0x456", username: "OsoMaster", team: "oso", isPlayer: true, profileImage: "/assets/nfts/sombra1.png", online: true },
         { address: "0x789", username: "Spectator", team: null, isPlayer: false, online: false },

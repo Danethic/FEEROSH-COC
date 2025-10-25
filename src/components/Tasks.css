@@ -1,0 +1,20 @@
+.tasks-container {
+    color: var(--ion-color-secondary);
+    display: flex !important;
+    flex-direction: column-reverse;
+    height: 50dvh;
+    width: 100%;
+    bottom: 0;
+    margin: 0 auto;
+    padding: 0;
+    --box-shadow: 0 15px 20px rgba(255, 214, 144, 0.1);
+    overflow: scroll;
+    background: #3a1e0e7e;
+    border-radius: 15px;
+
+
+    h1 {
+        align-self: center;
+        justify-self: center;
+    }
+}

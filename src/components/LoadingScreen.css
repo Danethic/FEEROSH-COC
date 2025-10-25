@@ -1,0 +1,22 @@
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background: #5f220c;
+    color: #ffd690;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    font-family: system-ui, sans-serif;
+    transition: opacity 0.3s ease;
+}
+
+.loading-screen p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
