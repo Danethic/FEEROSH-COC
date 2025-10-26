@@ -1,7 +1,6 @@
 // src/services/blockchainService.ts
 import { createPublicClient, createWalletClient, http, parseEther } from 'viem';
 import { mainnet } from 'viem/chains';
-import { useAuth } from '../contexts/authcontext';
 
 const CONTRACTS = {
     token: '0xTOKEN_CONTRACT_ADDRESS',
