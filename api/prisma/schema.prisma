@@ -1,0 +1,171 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      String    @id @default(uuid())
+  walletAddress           String    @unique
+  username                String?   @unique
+  passwordHash            String?
+  twofaEnabled            Boolean   @default(false)
+  profilePhotoUrl         String?
+  teamAssignment          Int       @default(0)
+  createdAt               DateTime  @default(now())
+  energy                  Int       @default(0)
+  points                  BigInt    @default(0)
+  hasOneTimeSecondDefense Boolean   @default(true)
+  afkState                Boolean   @default(false)
+  afkActiveUntil          DateTime?
+  afkCooldownUntil        DateTime?
+  metadata                Json      @default("{}")
+  updatedAt               DateTime  @updatedAt
+
+  userTeamAssignments UserTeamAssignment[]
+  phaseActions        UserPhaseAction[]
+  activityEvents      ActivityEvent[]
+  chats               Chat[]               @relation("chats_sender")
+  userTokens          UserToken[]
+
+  changedPhases PhaseHistory[]
+}
+
+model Season {
+  id             String   @id @default(uuid())
+  name           String
+  startAt        DateTime
+  endAt          DateTime
+  winnerTeam     Int?
+  prize          Json?
+  initialPrize   Json?
+  finalPrize     Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  seasonTeams     SeasonTeam[]
+  gameStates      GameState[]
+  userAssignments UserTeamAssignment[]
+  activityEvents  ActivityEvent[]
+  phaseActions    UserPhaseAction[]
+  chats           Chat[]
+}
+
+
+model SeasonTeam {
+  id        String @id @default(uuid())
+  season    Season @relation(fields: [seasonId], references: [id])
+  seasonId  String
+  teamIndex Int
+  teamName  String
+
+  @@unique([seasonId, teamIndex])
+}
+
+model UserTeamAssignment {
+  id         String   @id @default(uuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  season     Season   @relation(fields: [seasonId], references: [id])
+  seasonId   String
+  teamIndex  Int
+  assignedAt DateTime @default(now())
+
+  @@unique([userId, seasonId])
+}
+
+model GameState {
+  id               String    @id @default(uuid())
+  season           Season?   @relation(fields: [seasonId], references: [id])
+  seasonId         String?
+  currentPhase     Int       @default(0)
+  phaseChangeCount BigInt    @default(0)
+  phaseChangedAt   DateTime?
+  globalEnergy     BigInt    @default(0)
+  team0Energy      BigInt    @default(0)
+  team1Energy      BigInt    @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  phaseHistory PhaseHistory[]
+}
+
+model PhaseHistory {
+  id              String    @id @default(uuid())
+  gameState       GameState @relation(fields: [gameStateId], references: [id])
+  gameStateId     String
+  fromPhase       Int
+  toPhase         Int
+  changedByUser   User?     @relation(fields: [changedByUserId], references: [id])
+  changedByUserId String?
+  changedAt       DateTime  @default(now())
+  metadata        Json?
+}
+
+model UserPhaseAction {
+  id         String    @id @default(uuid())
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String
+  season     Season?   @relation(fields: [seasonId], references: [id])
+  seasonId   String?
+  phase      Int
+  actionType String
+  used       Boolean   @default(false)
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@unique([userId, seasonId, phase, actionType])
+}
+
+model Chat {
+  id           String   @id @default(uuid())
+  season       Season?  @relation(fields: [seasonId], references: [id])
+  seasonId     String?
+  channel      String
+  sender       User?    @relation("chats_sender", fields: [senderUserId], references: [id])
+  senderUserId String?
+  message      String
+  metadata     Json?
+  createdAt    DateTime @default(now())
+}
+
+model ActivityEvent {
+  id         String   @id @default(uuid())
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     String?
+  season     Season?  @relation(fields: [seasonId], references: [id])
+  seasonId   String?
+  eventType  String
+  payload    Json?
+  ip         String?
+  userAgent  String?
+  occurredAt DateTime @default(now())
+}
+
+model Web3Contract {
+  id              String   @id @default(uuid())
+  name            String
+  contractAddress String
+  network         String   @default("ethereum")
+  abi             Json?
+  metadata        Json?
+  createdAt       DateTime @default(now())
+
+  @@unique([name, network])
+}
+
+model UserToken {
+  id              String   @id @default(uuid())
+  user            User     @relation(fields: [userId], references: [id])
+  userId          String
+  tokenContractId String?
+  tokenId         String?
+  amount          Decimal  @default(0)
+  tokenType       String?
+  metadata        Json?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
