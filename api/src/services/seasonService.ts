@@ -42,7 +42,7 @@ export const seasonService = {
 
         return prisma.season.update({
             where: { id },
-            data: { finalPrize: season.prize },
+            data: { finalPrize: season.prize ?? 0 },
         });
     },
 };

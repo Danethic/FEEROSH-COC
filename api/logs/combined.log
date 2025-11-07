@@ -1,0 +1,5 @@
+[2025-11-06 22:18:00] INFO: GET /health [200] - 13ms
+[2025-11-06 22:18:01] INFO: GET /error-test [500] - 16ms
+[2025-11-06 22:29:19] INFO: GET /error-test [500] - 30ms
+[2025-11-06 22:29:20] INFO: GET /health [200] - 2ms
+[2025-11-06 22:43:02] INFO: GET /health [200] - 12ms
